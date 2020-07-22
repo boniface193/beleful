@@ -42,15 +42,30 @@ Vue.component('side-bar', {
                             </ul>
                         </li>
                         <li class="menu">
-                            <a href="Products.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="#products" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="tag"></i>
                                     <span>Manage Products</span>
                                 </div>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
                             </a>
+                            <ul class="collapse submenu list-unstyled" id="products" data-parent="#accordionExample">
+                                <li>
+                                    <a href="product_add.html"> Add New Product </a>
+                                </li>
+                                <li>
+                                    <a href="product_list.html"> Product's List </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="menu">
-                            <a href="productCategory.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="productCategory.html" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="cpu"></i>
                                     <span>Product Category</span>
