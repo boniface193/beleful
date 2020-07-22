@@ -1039,3 +1039,10 @@
     }
 
 }
+
+.modal-footer {
+    border-top: none !important;
+}
+.modal-content {
+    margin-top: 40%;
+}

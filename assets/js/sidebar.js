@@ -42,7 +42,7 @@ Vue.component('side-bar', {
                             </ul>
                         </li>
                         <li class="menu">
-                            <a href="Products" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="Products.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="tag"></i>
                                     <span>Manage Products</span>
@@ -50,7 +50,7 @@ Vue.component('side-bar', {
                             </a>
                         </li>
                         <li class="menu">
-                            <a href="productCategory" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="productCategory.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="cpu"></i>
                                     <span>Product Category</span>
