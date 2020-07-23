@@ -83,21 +83,22 @@
                                                     <th>ID</th>
                                                     <th>Category</th>
                                                     <th>Name</th>
-                                                    <th>Price</th>
+                                                    <th>Price(&#8358)</th>
                                                     <th>Has Container</th>
-                                                    <th>Availiabilty</th>
+                                                    <th>Availability</th>
                                                     <th style="text-align: right"></th>
                                                 </tr>
 
                                             </thead>
+                                            
                                             <tbody>
-                                                <tr v-for="item in items">
-                                                    <td width="5%"> {{item}} </td>
-                                                    <td width="17%">Rice</td>
-                                                    <td width="17%">Fried Rice & Chicken</td>
-                                                    <td width="17%">2499</td>
-                                                    <td width="5%"><i data-feather="x-circle"></i></td>
-                                                    <td width="5%"><i data-feather="check-circle"></i></td>
+                                                <tr v-for="(item, index) in items">
+                                                    <td width="5%"> {{index + 1}} </td>
+                                                    <td width="17%">{{item.category}}</td>
+                                                    <td width="17%">{{item.name}}</td>
+                                                    <td width="17%">{{item.price}}</td>
+                                                    <td width="5%"><i v-if="item.has_container" data-feather="check-circle"></i><i v-else data-feather="x-circle"></i></td>
+                                                    <td width="5%"><i v-if="item.availability" data-feather="check-circle"></i><i v-else data-feather="x-circle"></i></td>
                                                     <td width="17%" style="text-align: right">
                                                         <a href="http://fds.ims247.com/admin/banner/3/edit"
                                                             class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-success bs-tooltip"
@@ -192,7 +193,6 @@
                                                                 data-feather="trash-2"></i></button>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -226,21 +226,35 @@
         </div>
         <!-- END MAIN CONTAINER -->
         <script src="https://unpkg.com/feather-icons"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="assets/js/vue.js"></script>
+        <script src="assets/custom/js/constants.js"></script>>
         <script src="assets/custom/js/components/header.js"></script>
         <script src="assets/custom/js/components/subHeader.js"></script>
         <script src="assets/custom/js/components/sidebar.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script type="application/javascript">
             var app = new Vue({
                 el: '#app',
                 data: {
-                    message: 'Hello Vue!',
-                    items: [1, 2, 3, 4, 5, 6]
+                    items: [],
                 },
                 methods: {
                     handlebtn() {
                         console.log('confirmed!!!')
                     }
+                },
+                mounted: function() {
+
+                    axios.get(PRODUCT_LIST_URL, {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    }).then((response) => {
+                        this.items = response.data.data;
+                        console.log(this.items);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
                 }
             });
         </script>
@@ -262,18 +276,7 @@
         </script>
         <script src="assets/js/custom.js"></script>
         <!-- END GLOBAL MANDATORY SCRIPTS -->
-
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-        <script src="plugins/apex/apexcharts.min.js"></script>
-        <script src="assets/js/dashboard/dash_1.js"></script>
-        <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-        <script>
-            //First upload
-            var firstUpload = new FileUploadWithPreview('myFirstImage')
-            //Second upload
-            var secondUpload = new FileUploadWithPreview('mySecondImage')
-        </script>
+        
         <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
     </body>
