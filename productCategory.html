@@ -96,8 +96,8 @@
                                     
                                     </thead>
                                     <tbody >
-                                        <tr v-for="(object, key) in tableItems" :key="key">
-                                            <td width="17%">{{object.id}}</td>
+                                        <tr v-for="(object, index) in tableItems" :key="key">
+                                            <td width="17%">{{index + 1}}</td>
                                             <td width="17%">{{object.vendor}}</td>
                                             <td width="17%">{{object.category}}</td>
                                             <td width="17%" style="text-align: right">
@@ -194,7 +194,7 @@
                 mounted() {
                     axios.get(VENDOR_CATEGORY, {
                         headers: {
-                            'Authorization': `Bearer ${access_token}`
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
                         }
                     }).then((response) => {
                         // console.log(response.data.data[0]);

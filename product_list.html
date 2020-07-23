@@ -92,7 +92,7 @@
                                             </thead>
                                             
                                             <tbody>
-                                                <tr v-for="(item, index) in items">
+                                                <tr v-for="(item, index) in items" :key="item.id">
                                                     <td width="5%"> {{index + 1}} </td>
                                                     <td width="17%">{{item.category}}</td>
                                                     <td width="17%">{{item.name}}</td>

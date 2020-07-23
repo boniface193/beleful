@@ -159,13 +159,14 @@
 
                         axios.post(LOGIN_URL, {
                             email: this.email,
-                            password: this.password
+                            password: this.password,
                         }).then((response) => {
                             responseData = response.data;
-                            console.log(responseData.data.user);
+                            console.log(responseData.data.vendor);
                             if (responseData.data.user.is_vendor || responseData.data.user.is_superuser) {
                                 localStorage.setItem('token', responseData.data.access);
                                 localStorage.setItem('user', JSON.stringify(responseData.data.user));
+                                localStorage.setItem('vendor', JSON.stringify(responseData.data.vendor));
                                 window.location.href = 'index.html';
                                 console.log('*****************');
                                 console.log(localStorage.getItem('token'));
