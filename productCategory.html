@@ -73,11 +73,11 @@
 
                                         <div class="row">
                                             <div class="col-lg-6 col-12 mx-auto">
-                                                <form method="post">
+                                                <form @submit.prevent="addItem">
                                                     <div class="form-group">
                                                         <label for="t-text" class="sr-only">Text</label>
-                                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Add item Category....">
-                                                        <button href="" class="btn mt-4 btn-rounded btn-warning">Add Item Category</button>
+                                                        <input type="text" v-model="itemCategory" class="form-control" placeholder="Add item Category....">
+                                                        <button class="btn mt-4 btn-rounded btn-warning">Add Item Category</button>
                                                     </div>
                                                 </form>
                                             </div>                                        
@@ -166,13 +166,29 @@
     
             var app = new Vue({
                 el: '#app',
-                data: {
+                data:() => ({
                     message: 'Hello Vue!',
                     tableItems: '',
-                },
+                    itemCategory: ''
+                }),
                 methods: {
-                    handlebtn() {
-                        console.log('confirmed!!!')
+                    addItem() {
+                        const newItem = {
+                            itemCategory: this.itemCategory
+                        }
+                        console.log(newItem.itemCategory)
+
+                        axios.post(VENDOR_CATEGORY, {
+                            category: this.itemCategory,
+                            headers: {
+                                'Authorization': `Bearer ${access_token}`
+                            }
+                        }).then((response) => {
+                           console.log(response.data.data)
+                        })
+                        .catch((error) => {
+                            console.log('This is an error',error)
+                        })
                     }
                 },
                 mounted() {
