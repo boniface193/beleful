@@ -330,12 +330,14 @@
                                 backgroundColor: '#8dbf42'
                             });
                         }).catch((error) => {
+                            this.updateLoading = false;
                             Snackbar.show({
                                 text: 'An error occurred',
                                 actionTextColor: '#fff',
                                 backgroundColor: '#e7515a'
                             });
                         });
+                        
                     }
                 },
                 mounted: function () {
