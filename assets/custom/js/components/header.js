@@ -1,3 +1,6 @@
+vendorObj = JSON.parse(localStorage.getItem('vendor'))
+console.log(vendorObj);
+
 Vue.component('header-nav-bar', {
 template : `        <div class="header-container fixed-top">
 <header class="header navbar navbar-expand-sm">
@@ -5,11 +8,11 @@ template : `        <div class="header-container fixed-top">
     <ul class="navbar-item theme-brand flex-row  text-center">
         <li class="nav-item theme-logo">
             <a href="index.html">
-                <img src="assets/img/logo.svg" class="navbar-logo" alt="logo">
+                <img src="assets/img/beleful.png" class="navbar-logo" alt="logo">
             </a>
         </li>
         <li class="nav-item theme-text">
-            <a href="index.html" class="nav-link"> CORK </a>
+            <a href="index.html" class="nav-link"> BELEFUL </a>
         </li>
     </ul>
 
@@ -31,27 +34,6 @@ template : `        <div class="header-container fixed-top">
     </ul>
 
     <ul class="navbar-item flex-row ml-md-auto">
-
-        <li class="nav-item dropdown language-dropdown">
-            <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="assets/img/ca.png" class="flag-width" alt="flag">
-            </a>
-            <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
-                <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="assets/img/de.png"
-                        class="flag-width" alt="flag"> <span
-                        class="align-self-center">&nbsp;German</span></a>
-                <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="assets/img/jp.png"
-                        class="flag-width" alt="flag"> <span
-                        class="align-self-center">&nbsp;Japanese</span></a>
-                <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="assets/img/fr.png"
-                        class="flag-width" alt="flag"> <span
-                        class="align-self-center">&nbsp;French</span></a>
-                <a class="dropdown-item d-flex" href="javascript:void(0);"><img src="assets/img/ca.png"
-                        class="flag-width" alt="flag"> <span
-                        class="align-self-center">&nbsp;English</span></a>
-            </div>
-        </li>
 
         <li class="nav-item dropdown message-dropdown">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="messageDropdown"
@@ -196,7 +178,7 @@ template : `        <div class="header-container fixed-top">
         <li class="nav-item dropdown user-profile-dropdown">
             <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <img src="assets/img/profile-16.jpeg" alt="avatar">
+                <img src="${vendorObj.image}" alt="avatar">
             </a>
             <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                 <div class="">
