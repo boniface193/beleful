@@ -98,7 +98,7 @@
                                     <tbody >
                                         <tr v-for="(object, index) in tableItems" :key="key">
                                             <td width="17%">{{index + 1}}</td>
-                                            <td width="17%">{{object.vendor}}</td>
+                                            <td width="17%">{{object.vendor_name}}</td>
                                             <td width="17%">{{object.category}}</td>
                                             <td width="17%" style="text-align: right">
                                                 <a href="http://fds.ims247.com/admin/banner/3/edit" class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-success bs-tooltip" data-toggle="modal" data-target="#exampleModal" title="Edit This Entry"><img src="./assets/img/edit-2.svg" height="20" style="filter: invert(1)" alt="edit"></a>
@@ -192,7 +192,7 @@
                     }
                 },
                 mounted() {
-                    axios.get(VENDOR_CATEGORY, {
+                    axios.get(generateURL(VENDOR_CATEGORY), {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`
                         }

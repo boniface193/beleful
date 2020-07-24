@@ -29,7 +29,7 @@
         <!--  BEGIN CUSTOM STYLE FILE  -->
         <link href="assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
         <!--  END CUSTOM STYLE FILE  -->
-
+        <link href="plugins/notification/snackbar/snackbar.min.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -83,30 +83,40 @@
                                                     <th>ID</th>
                                                     <th>Category</th>
                                                     <th>Name</th>
+                                                    <th>Image</th>
                                                     <th>Price(&#8358)</th>
                                                     <th>Has Container</th>
+                                                    <th>Container's Price (&#8358)</th>
                                                     <th>Availability</th>
                                                     <th style="text-align: right"></th>
                                                 </tr>
 
                                             </thead>
-                                            
+
                                             <tbody>
                                                 <tr v-for="(item, index) in items" :key="item.id">
                                                     <td width="5%"> {{index + 1}} </td>
-                                                    <td width="17%">{{item.category}}</td>
+                                                    <td width="17%">{{item.category_name}}</td>
                                                     <td width="17%">{{item.name}}</td>
+                                                    <td width="17%"><img width="60" height="60" :src="item.image"
+                                                            :alt="item.name"></td>
                                                     <td width="17%">{{item.price}}</td>
-                                                    <td width="5%"><i v-if="item.has_container" data-feather="check-circle"></i><i v-else data-feather="x-circle"></i></td>
-                                                    <td width="5%"><i v-if="item.availability" data-feather="check-circle"></i><i v-else data-feather="x-circle"></i></td>
+                                                    <td width="5%"><i v-if="item.has_container"
+                                                            data-feather="check-circle"></i><i v-else
+                                                            data-feather="x-circle"></i></td>
+                                                    <td width="17%">{{item.container_price}}</td>
+                                                    <td width="5%"><i v-if="item.availability"
+                                                            data-feather="check-circle"></i><i v-else
+                                                            data-feather="x-circle"></i></td>
                                                     <td width="17%" style="text-align: right">
-                                                        <a href="http://fds.ims247.com/admin/banner/3/edit"
+                                                        <a v-on:click="selectProduct(index, item)"
+                                                            href="http://fds.ims247.com/admin/banner/3/edit"
                                                             class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-success bs-tooltip"
-                                                            data-toggle="modal" data-target="#exampleModal"
+                                                            data-toggle="modal" data-target="#updateProductModal"
                                                             title="Edit This Entry"><i data-feather="edit-2"></i></a>
                                                         <!-- Modal -->
-                                                        <div id="exampleModal" class="modal animated fadeInDown mt-1"
-                                                            role="dialog">
+                                                        <div id="updateProductModal"
+                                                            class="modal animated fadeInDown mt-1" role="dialog">
                                                             <div class="modal-dialog modal-sm ">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body text-left">
@@ -114,16 +124,19 @@
                                                                             <div class="form-group">
                                                                                 <label for="inputState">Category</label>
                                                                                 <select id="inputState"
-                                                                                    class="form-control">
-                                                                                    <option selected>Choose...</option>
-                                                                                    <option>...</option>
+                                                                                    class="form-control"
+                                                                                    v-model="updateCategoryId">
+                                                                                    <option v-for="obj in categories"
+                                                                                        :value="obj.id">{{obj.category}}
+                                                                                    </option>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="inputPassword4">Name</label>
                                                                                 <input type="text" class="form-control"
                                                                                     id="inputPassword4"
-                                                                                    placeholder="Product's name">
+                                                                                    placeholder="Product's name"
+                                                                                    v-model="updateName">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label
@@ -131,7 +144,8 @@
                                                                                 <input type="number"
                                                                                     class="form-control"
                                                                                     id="inputPassword4"
-                                                                                    placeholder="Price">
+                                                                                    placeholder="Price"
+                                                                                    v-model="updatePrice">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="inputAddress">Image</label>
@@ -158,6 +172,7 @@
                                                                                 <input type="number"
                                                                                     class="form-control"
                                                                                     id="inputPassword4"
+                                                                                    v-model="updateContainerPrice"
                                                                                     placeholder="Container's Price (Optional)">
                                                                             </div>
                                                                             <div class="form-group">
@@ -166,10 +181,24 @@
                                                                                         class="custom-control custom-checkbox checkbox-info">
                                                                                         <input type="checkbox"
                                                                                             class="custom-control-input"
-                                                                                            id="gridCheck">
+                                                                                            id="gridCheck1"
+                                                                                            v-model="updateAvailability">
                                                                                         <label
                                                                                             class="custom-control-label"
-                                                                                            for="gridCheck">Has
+                                                                                            for="gridCheck1">Is
+                                                                                            Availiable</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-check pl-0">
+                                                                                    <div
+                                                                                        class="custom-control custom-checkbox checkbox-info">
+                                                                                        <input type="checkbox"
+                                                                                            class="custom-control-input"
+                                                                                            id="gridCheck2"
+                                                                                            v-model="updateHasContainer">
+                                                                                        <label
+                                                                                            class="custom-control-label"
+                                                                                            for="gridCheck2">Has
                                                                                             Container?</label>
                                                                                     </div>
                                                                                 </div>
@@ -180,7 +209,15 @@
                                                                         <button data-dismiss="modal"
                                                                             class="btn btn-rounded">Discard</button>
                                                                         <button href=""
-                                                                            class="btn btn-rounded btn-warning">Save</button>
+                                                                            class="btn btn-rounded btn-warning"
+                                                                            v-on:click="updateProduct">
+                                                                            <div v-if="updateLoading">
+                                                                                <div
+                                                                                    class="spinner-border text-white align-self-center loader-sm ">
+                                                                                    .</div>
+                                                                            </div>
+                                                                            <div v-else>Save</div>
+                                                                        </button>
 
 
                                                                     </div>
@@ -237,15 +274,73 @@
                 el: '#app',
                 data: {
                     items: [],
+                    categories: [],
+                    selectedIndex: '',
+                    selectedId: '',
+                    updateName: '',
+                    updateCategoryId: '',
+                    updateCategoryName: '',
+                    updatePrice: '',
+                    updateContainerPrice: '',
+                    updateImage: '',
+                    updateHasContainer: '',
+                    updateAvailability: '',
+                    updateLoading: false,
                 },
                 methods: {
-                    handlebtn() {
-                        console.log('confirmed!!!')
+                    selectProduct: function (index, item) {
+                        console.log(index);
+                        console.log(item);
+                        this.selectedIndex = index;
+                        this.selectedId = item.id,
+                            this.updateName = item.name;
+                        this.updateCategoryName = item.category_name;
+                        this.updateCategoryId = item.category;
+                        this.updatePrice = item.price;
+                        this.updateImage = item.image;
+                        this.updateContainerPrice = item.container_price;
+                        this.updateHasContainer = item.has_container;
+                        this.updateAvailability = item.availability;
+
+                    },
+
+                    updateProduct: function () {
+                        this.updateLoading = true;
+                        axios.put(generateURL(PRODUCT_URL + this.selectedId),
+                            {
+                                'name': this.updateName,
+                                'price': this.updatePrice,
+                                'category': this.updateCategoryId,
+                                'container_price': this.updateContainerPrice,
+                                'has_container': this.updateHasContainer,
+                                'availability': this.updateAvailability,
+                            }, {
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            }
+                        }
+                        ).then((response) => {
+                            console.log(response.data.data);
+                            this.$set(this.items, this.selectedIndex, response.data.data);
+                            this.updateLoading = false;
+                            $('#updateProductModal').modal('hide');
+                            Snackbar.show({
+                                text: 'Item successfully updated',
+                                actionTextColor: '#fff',
+                                backgroundColor: '#8dbf42'
+                            });
+                        }).catch((error) => {
+                            Snackbar.show({
+                                text: 'An error occurred',
+                                actionTextColor: '#fff',
+                                backgroundColor: '#e7515a'
+                            });
+                        });
                     }
                 },
-                mounted: function() {
+                mounted: function () {
 
-                    axios.get(PRODUCT_LIST_URL, {
+                    axios.get(generateURL(PRODUCT_URL), {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`
                         }
@@ -255,6 +350,20 @@
                     }).catch((error) => {
                         console.log(error);
                     });
+
+                    axios.get(generateURL(VENDOR_CATEGORY), {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    }).then((response) => {
+                        // console.log(response.data.data[0]);
+                        response.data.data.forEach((entry) => {
+                            this.categories.push(entry);
+                        });
+                        console.log(this.categories)
+                    }).catch((error) => {
+                        console.log('This is an error!!!', error)
+                    })
                 }
             });
         </script>
@@ -266,6 +375,9 @@
         <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="assets/js/app.js"></script>
         <script src="https://unpkg.com/feather-icons"></script>
+        <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+        <script src="plugins/notification/snackbar/snackbar.min.js"></script>
+
         <script>
             feather.replace();
         </script>
@@ -275,8 +387,12 @@
             });
         </script>
         <script src="assets/js/custom.js"></script>
+        <script>
+            //First upload
+            var firstUpload = new FileUploadWithPreview('myFirstImage')
+        </script>
         <!-- END GLOBAL MANDATORY SCRIPTS -->
-        
+
         <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
     </body>

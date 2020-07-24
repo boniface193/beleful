@@ -116,7 +116,7 @@
                                                             Loading...</div>
                                                         Loading
                                                     </div>
-                                                    <a v-else href="index.html">Log In</a>
+                                                    <div v-else>Log In</div>
                                                 </button>
                                             </div>
                                         </div>
@@ -157,7 +157,7 @@
 
                         this.loading = true;
 
-                        axios.post(LOGIN_URL, {
+                        axios.post(generateURL(LOGIN_URL), {
                             email: this.email,
                             password: this.password,
                         }).then((response) => {
@@ -176,7 +176,9 @@
                             }
                             this.loading = false;
                         }).catch((error) => {
+
                             errorData = error.response.data;
+                            console.log(errorData);
                             this.errors.push(errorData.errors);
                             this.loading = false;
                         });
