@@ -323,7 +323,7 @@
                                 'availability': this.updateAvailability,
                             }, {
                             headers: {
-                                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                                'Authorization': `Bearer ${ACCESS__TOKEN}`
                             }
                         }
                         ).then((response) => {
@@ -361,7 +361,7 @@
                                 axios.delete(generateURL(PRODUCT_URL + itemId),
                                     {
                                         headers: {
-                                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                                            'Authorization': `Bearer ${ACCESS__TOKEN}`
                                         }
                                     }
                                 ).then((response) => {
@@ -386,7 +386,7 @@
 
                     axios.get(generateURL(PRODUCT_URL), {
                         headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            'Authorization': `Bearer ${ACCESS__TOKEN}`
                         }
                     }).then((response) => {
                         this.items = response.data.data;
@@ -402,7 +402,7 @@
 
                     axios.get(generateURL(VENDOR_CATEGORY), {
                         headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            'Authorization': `Bearer ${ACCESS__TOKEN}`
                         }
                     }).then((response) => {
                         // console.log(response.data.data[0]);
@@ -445,7 +445,7 @@
         <script src="assets/js/custom.js"></script>
         <script>
             //First upload
-            var firstUpload = new FileUploadWithPreview('myFirstImage')
+            var firstUpload = new FileUploadWithPreview('myFirstImage');
         </script>
         <!-- END GLOBAL MANDATORY SCRIPTS -->
 
