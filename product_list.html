@@ -16,8 +16,6 @@
         <!-- END GLOBAL MANDATORY STYLES -->
 
         <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-        <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
         <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
 
         <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -107,19 +105,24 @@
                                                         <td width="5%"><img width="60" height="60" :src="item.image"
                                                                 :alt="item.name"></td>
                                                         <td width="5%">{{item.price}}</td>
-                                                        <td width="5%"><i v-if="item.has_container"
-                                                                data-feather="check-circle"></i><i v-else
-                                                                data-feather="x-circle"></i></td>
+                                                        <td width="5%"><img src="./assets/img/check-circle.svg" v-if="item.has_container"
+                                                            height="20" style="filter: invert(1)" alt="true"> 
+                                                        <img v-else src="./assets/img/x-circle.svg" 
+                                                            height="20" style="filter: invert(1)" alt="false"></td>
                                                         <td width="5%">{{item.container_price}}</td>
-                                                        <td width="5%"><i v-if="item.availability"
-                                                                data-feather="check-circle"></i><i v-else
-                                                                data-feather="x-circle"></i></td>
+                                                        <td width="5%">
+                                                            <img src="./assets/img/check-circle.svg" v-if="item.availability"
+                                                                height="20" style="filter: invert(1)" alt="true"> 
+                                                            <img v-else src="./assets/img/x-circle.svg" 
+                                                                height="20" style="filter: invert(1)" alt="false">
+                                                        </td>
                                                         <td width="17%" style="text-align: right">
-                                                            <a v-on:click="selectProduct(index, item)"
-                                                                href="http://fds.ims247.com/admin/banner/3/edit"
+                                                            <a v-on:click.prevent="selectProduct(index, item)"
+                                                                href=""
                                                                 class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-success bs-tooltip"
                                                                 data-toggle="modal" data-target="#updateProductModal"
-                                                                title="Edit This Entry"><i data-feather="edit-2"></i></a>
+                                                                title="Edit This Entry"><img src="./assets/img/edit-2.svg"
+                                                                height="20" style="filter: invert(1)" alt="edit"></a>
                                                             <!-- Modal -->
                                                             <div id="updateProductModal"
                                                                 class="modal animated fadeInDown mt-1" role="dialog">
@@ -232,8 +235,8 @@
                                                             </div>
                                                             <button href="" v-on:click.prevent="deleteProduct(index, item.id)"
                                                                 class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-danger bs-tooltip"
-                                                                title="Delete This Entry"><i
-                                                                    data-feather="trash-2"></i></button>
+                                                                title="Delete This Entry"><img src="./assets/img/trash-2.svg"
+                                                                height="20" style="filter: invert(1)" alt="delete"></button>
                                                         </td>
                                                     </tr>
                                                 </tbody>

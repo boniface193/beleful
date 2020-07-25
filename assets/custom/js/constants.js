@@ -1,4 +1,4 @@
-const BASE_URL = 'https://staging-api.beleful.com.ng/api/';
+const BASE_URL = 'https:staging-api.beleful.com.ng/api/';
 
 const LOGIN_URL = 'user/auth/';
 
