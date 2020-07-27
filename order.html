@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title> Orders | Beleful Dashboard </title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/loader.js"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -140,6 +140,9 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div v-if="pageLoading" class="text-center">
+                                            <div class="spinner-border text-white mt-5 mb-5 align-self-center loader-lg"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,6 +177,7 @@
             el: '#app',
             data: {
                 items: [],
+                pageLoading: false
             },
             methods: {
                 getOrderDetail: function (id) {
@@ -188,6 +192,7 @@
                 }
             },
             mounted: function () {
+                this.pageLoading = true
                 if (localStorage.getItem("token") === null) {
                     localStorage.removeItem('token');
                     window.location.href = 'login.html';
@@ -198,6 +203,7 @@
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 }).then((response) => {
+                    this.pageLoading = false
                     this.items = response.data.data;
                 }).catch((error) => {
                     if (error.response.code == 401) {

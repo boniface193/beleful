@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Sales Admin | Beleful Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/loader.js"></script>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -80,6 +80,9 @@
                                 <div class="widget-content">
                                     <div class="tabs tab-content">
                                         <div id="content_1" class="tabcontent">
+                                            <div v-if="loading" class="text-center">
+                                                <div class="spinner-border text-white mt-5 mb-5 align-self-center loader-lg "></div>
+                                            </div>
                                             <div id="revenueMonthly"></div>
                                         </div>
                                     </div>
@@ -93,6 +96,9 @@
                                     <h5 class="">Sales by Category</h5>
                                 </div>
                                 <div class="widget-content">
+                                    <div v-if="loading" class="text-center">
+                                        <div class="spinner-border text-white mt-5 mb-5 align-self-center loader-lg "></div>
+                                    </div>
                                     <div id="chart-2" class=""></div>
                                 </div>
                             </div>
@@ -159,6 +165,9 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div v-if="loading" class="text-center">
+                                            <div class="spinner-border mt-5 mb-5 align-self-center loader-lg "></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -209,6 +218,9 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div v-if="loading" class="text-center">
+                                            <div class="spinner-border text-white mt-5 mb-5 align-self-center loader-lg "></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -252,6 +264,7 @@
                 total_sale: 0,
                 delivery_paid_count: Array(12).fill(0),
                 delivery_cancelled_count: Array(12).fill(0),
+                loading: false,
             },
             computed: {
                 year: function () {
@@ -267,6 +280,7 @@
                 }
             },
             mounted: function () {
+                this.loading = true
                 if (localStorage.getItem("token") === null) {
                     localStorage.removeItem('token');
                     window.location.href = 'login.html';
@@ -277,6 +291,7 @@
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 }).then((response) => {
+                    this.loading = false
                     response.data.data.category_graph_response.forEach(element => {
                         this.category_names.push(element.name);
                         this.category_count.push(element.count);
