@@ -1,319 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-        <title>Sales Admin | CORK - Multipurpose Bootstrap Dashboard Template </title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
-        <script src="assets/js/loader.js"></script>
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
-        <!-- END GLOBAL MANDATORY STYLES -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Add Product | Beleful Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/loader.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
 
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-        <script src="https://unpkg.com/feather-icons"></script>
-        <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
-        <link href="plugins/notification/snackbar/snackbar.min.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/notification/snackbar/snackbar.min.css" rel="stylesheet" type="text/css" />
 
-        <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
-    </head>
+</head>
 
-    <body>
-        <div id="load_screen">
-            <div class="loader">
-                <div class="loader-content">
-                    <div class="spinner-grow align-self-center"></div>
-                </div>
+<body>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
             </div>
         </div>
-        <div id="app">
-            <!-- BEGIN LOADER -->
-            <!--  END LOADER -->
+    </div>
+    <div id="app">
+        <!-- BEGIN LOADER -->
+        <!--  END LOADER -->
 
-            <!--  BEGIN NAVBAR  -->
-            <header-nav-bar></header-nav-bar>
-            <!--  END NAVBAR  -->
+        <!--  BEGIN NAVBAR  -->
+        <header-nav-bar></header-nav-bar>
+        <!--  END NAVBAR  -->
 
-            <!--  BEGIN NAVBAR  -->
-            <subheader-nav-bar></subheader-nav-bar>
-            <!--  END NAVBAR  -->
+        <!--  BEGIN NAVBAR  -->
+        <subheader-nav-bar></subheader-nav-bar>
+        <!--  END NAVBAR  -->
 
-            <!--  BEGIN MAIN CONTAINER  -->
-            <div class="main-container" id="container app">
+        <!--  BEGIN MAIN CONTAINER  -->
+        <div class="main-container" id="container app">
 
-                <div class="overlay"></div>
-                <div class="search-overlay"></div>
+            <div class="overlay"></div>
+            <div class="search-overlay"></div>
 
-                <!--  BEGIN SIDEBAR  -->
-                <side-bar></side-bar>
-                <!--  END SIDEBAR  -->
+            <!--  BEGIN SIDEBAR  -->
+            <side-bar></side-bar>
+            <!--  END SIDEBAR  -->
 
-                <!--  BEGIN CONTENT AREA  -->
-                <div id="content" class="main-content">
-                    <div class="layout-px-spacing">
+            <!--  BEGIN CONTENT AREA  -->
+            <div id="content" class="main-content">
+                <div class="layout-px-spacing">
 
-                        <div class="row layout-top-spacing">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                    <div class="row layout-top-spacing">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
 
-                                <div id="basic" class="col-lg-12 layout-spacing">
-                                    <div class="statbox widget box box-shadow">
-                                        <div class="widget-header">
-                                            <div class="row">
-                                                <div class="col-lg-10 col-12 mx-auto">
-                                                    <h4>Add Product</h4>
-                                                </div>
+                            <div id="basic" class="col-lg-12 layout-spacing">
+                                <div class="statbox widget box box-shadow">
+                                    <div class="widget-header">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-12 mx-auto">
+                                                <h4>Add Product</h4>
                                             </div>
                                         </div>
-                                        <div class="widget-content widget-content-area">
+                                    </div>
+                                    <div class="widget-content widget-content-area">
 
-                                            <div class="row">
-                                                <div class="col-lg-10 col-12 mx-auto">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-12 mx-auto">
 
-                                                    <form>
-                                                        <div class="form-row mb-4">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="inputState">Category</label>
-                                                                <select id="inputState" class="form-control"
-                                                                    v-model="categoryId" required>
-                                                                    <option v-for="obj in categories" :value="obj.id">
-                                                                        {{obj.category}}
-                                                                    </option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="inputPassword4">Name</label>
-                                                                <input type="text" class="form-control" v-model="name"
-                                                                    id="inputPassword4" placeholder="Product's name" required>
+                                                <form>
+                                                    <div class="form-row mb-4">
+                                                        <div class="form-group col-md-6">
+                                                            <label for="inputState">Category</label>
+                                                            <select id="inputState" class="form-control"
+                                                                v-model="categoryId" required>
+                                                                <option v-for="obj in categories" :value="obj.id">
+                                                                    {{obj.category}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label for="inputPassword4">Name</label>
+                                                            <input type="text" class="form-control" v-model="name"
+                                                                id="inputPassword4" placeholder="Product's name"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row mb-4">
+                                                        <div class="form-group col-md-4">
+                                                            <label for="inputPassword4">Container's Price</label>
+                                                            <input type="number" class="form-control"
+                                                                id="inputPassword4" v-model="containerPrice"
+                                                                placeholder="Container's Price (Optional)">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="inputPassword4">Price</label>
+                                                            <input type="number" class="form-control" v-model="price"
+                                                                id="inputPassword4" placeholder="Price" required>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="inputAddress">Image</label>
+                                                            <div class="custom-file-container"
+                                                                data-upload-id="myFirstImage">
+
+                                                                <label class="custom-file-container__custom-file">
+                                                                    <input type="file"
+                                                                        class="custom-file-container__custom-file__custom-file-input"
+                                                                        accept="image/*">
+                                                                    <input type="hidden" name="MAX_FILE_SIZE"
+                                                                        value="10485760" v-model="image" />
+                                                                    <span
+                                                                        class="custom-file-container__custom-file__custom-file-control"></span>
+                                                                </label>
                                                             </div>
                                                         </div>
-                                                        <div class="form-row mb-4">
-                                                            <div class="form-group col-md-4">
-                                                                <label for="inputPassword4">Container's Price</label>
-                                                                <input type="number" class="form-control"
-                                                                    id="inputPassword4" v-model="containerPrice"
-                                                                    placeholder="Container's Price (Optional)">
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="inputPassword4">Price</label>
-                                                                <input type="number" class="form-control"
-                                                                    v-model="price" id="inputPassword4"
-                                                                    placeholder="Price" required>
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="inputAddress">Image</label>
-                                                                <div class="custom-file-container"
-                                                                    data-upload-id="myFirstImage">
-
-                                                                    <label class="custom-file-container__custom-file">
-                                                                        <input type="file"
-                                                                            class="custom-file-container__custom-file__custom-file-input"
-                                                                            accept="image/*">
-                                                                        <input type="hidden" name="MAX_FILE_SIZE"
-                                                                            value="10485760" v-model="image" />
-                                                                        <span
-                                                                            class="custom-file-container__custom-file__custom-file-control"></span>
-                                                                    </label>
-                                                                </div>
+                                                    </div>
+                                                    <div class="form-group mb-4">
+                                                        <div class="form-check pl-0">
+                                                            <div class="custom-control custom-checkbox checkbox-info">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    id="gridCheck" v-model="hasContainer">
+                                                                <label class="custom-control-label" for="gridCheck">Has
+                                                                    Container?</label>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group mb-4">
-                                                            <div class="form-check pl-0">
-                                                                <div
-                                                                    class="custom-control custom-checkbox checkbox-info">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                        id="gridCheck" v-model="hasContainer">
-                                                                    <label class="custom-control-label"
-                                                                        for="gridCheck">Has Container?</label>
-                                                                </div>
-                                                            </div>
+                                                    </div>
+                                                    <button type="submit" class="btn mt-3 btn-rounded btn-warning"
+                                                        v-on:click.prevent="addProduct">
+                                                        <div v-if="loading">
+                                                            <div
+                                                                class="spinner-border text-white align-self-center loader-sm ">
+                                                                .</div>
                                                         </div>
-                                                        <button type="submit" class="btn mt-3 btn-rounded btn-warning"
-                                                            v-on:click.prevent="addProduct">
-                                                            <div v-if="loading">
-                                                                <div
-                                                                    class="spinner-border text-white align-self-center loader-sm ">
-                                                                    .</div>
-                                                            </div>
-                                                            <div v-else>Add Product</div>
-                                                        </button>
-                                                    </form>
-                                                </div>
+                                                        <div v-else>Add Product</div>
+                                                    </button>
+                                                </form>
                                             </div>
-
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="footer-wrapper">
-                        <div class="footer-section f-section-1">
-                            <p class="">Copyright © 2020 <a target="_blank"
-                                    href="https://designreset.com">DesignReset</a>,
-                                All rights reserved.</p>
-                        </div>
-                        <div class="footer-section f-section-2">
-                            <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                    <path
-                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                                    </path>
-                                </svg></p>
-                        </div>
+
+                </div>
+                <div class="footer-wrapper">
+                    <div class="footer-section f-section-1">
+                        <p class="">Copyright © {{year}} <a target="_blank" href="https://firstpavitech.com">First
+                                Pavilion Technologies</a>,
+                            All rights reserved.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--  END CONTENT AREA  -->
+    </div>
+    <!--  END CONTENT AREA  -->
 
-        <!-- END MAIN CONTAINER -->
-        <script src="https://unpkg.com/feather-icons"></script>
-        <script src="assets/js/vue.js"></script>
-        <script src="assets/custom/js/constants.js"></script>
-        <script src="assets/custom/js/components/header.js"></script>
-        <script src="assets/custom/js/components/subHeader.js"></script>
-        <script src="assets/custom/js/components/sidebar.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script type="application/javascript">
-            var app = new Vue({
-                el: '#app',
-                data: {
-                    categories: [],
-                    selectedIndex: '',
-                    selectedId: '',
-                    name: '',
-                    categoryId: '',
-                    categoryName: '',
-                    price: '',
-                    containerPrice: '',
-                    image: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Chicken-Pizza_exps30800_FM143298B03_11_8bC_RMS-696x696.jpg',
-                    hasContainer: false,
-                    loading: false,
-                },
-                methods: {
+    <!-- END MAIN CONTAINER -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/custom/js/constants.js"></script>
+    <script src="assets/custom/js/components/header.js"></script>
+    <script src="assets/custom/js/components/subHeader.js"></script>
+    <script src="assets/custom/js/components/sidebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="application/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                categories: [],
+                selectedIndex: '',
+                selectedId: '',
+                name: '',
+                categoryId: '',
+                categoryName: '',
+                price: '',
+                containerPrice: '',
+                image: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Chicken-Pizza_exps30800_FM143298B03_11_8bC_RMS-696x696.jpg',
+                hasContainer: false,
+                loading: false,
+            },
 
-                    addProduct: function () {
-                        this.loading = true;
-                        if((this.hasContainer == true && this.containerPrice == '') || (this.hasContainer == false && this.containerPrice != '')){
-                            this.loading = false;
-                            Snackbar.show({
-                                text: 'If a container price is set then the has container must be checked',
-                                actionTextColor: '#fff',
-                                backgroundColor: '#e7515a',
-                            });
-                            return;
-                        }
-                        axios.post(generateURL(PRODUCT_URL),
-                            {
-                                'name': this.name,
-                                'price': this.price,
-                                'image': this.image,
-                                'category': this.categoryId,
-                                'container_price': this.containerPrice,
-                                'has_container': this.hasContainer,
-                                'availability': this.availability,
-                            }, {
-                            headers: {
-                                'Authorization': `Bearer ${localStorage.getItem('token')}`
-                            }
-                        }
-                        ).then((response) => {
-                            if (response.data.success == false) {
-                                this.loading = false;
-                                Snackbar.show({
-                                    text: response.data.errors,
-                                    actionTextColor: '#fff',
-                                    backgroundColor: '#e7515a',
-                                });
-                            } else {
-                                console.log(response.data);
-                                this.loading = false;
-                                this.name = '';
-                                this.price = '';
-                                this.containerPrice = '';
-                                this.hasContainer = false;
-                                Snackbar.show({
-                                    text: 'Item successfully created',
-                                    actionTextColor: '#fff',
-                                    backgroundColor: '#8dbf42',
-                                    width: 'auto',
-                                    onActionClick: function (element) {
-                                        //Set opacity of element to 0 to close Snackbar 
-                                        $(element).css('opacity', 0);
-                                        window.location.href = 'product_list.html';
-                                    }
-                                });
-                            }
-                        }).catch((error) => {
-                            console.log(error.response.data);
-                            this.loading = false;
-                            Snackbar.show({
-                                text: 'An error occurred',
-                                actionTextColor: '#fff',
-                                backgroundColor: '#e7515a'
-                            });
+            computed: {
+                year: function () {
+                    var d = new Date();
+                    var year = d.getFullYear();
+                    return year;
+                }
+            },
+            methods: {
+
+                addProduct: function () {
+                    this.loading = true;
+                    if ((this.hasContainer == true && this.containerPrice == '') || (this.hasContainer == false && this.containerPrice != '')) {
+                        this.loading = false;
+                        Snackbar.show({
+                            text: 'If a container price is set then the has container must be checked',
+                            actionTextColor: '#fff',
+                            backgroundColor: '#e7515a',
                         });
-
-                    },
-                },
-                mounted: function () {
-
-                    axios.get(generateURL(VENDOR_CATEGORY), {
+                        return;
+                    }
+                    axios.post(generateURL(PRODUCT_URL),
+                        {
+                            'name': this.name,
+                            'price': this.price,
+                            'image': this.image,
+                            'category': this.categoryId,
+                            'container_price': this.containerPrice,
+                            'has_container': this.hasContainer,
+                            'availability': this.availability,
+                        }, {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`
                         }
-                    }).then((response) => {
-                        // console.log(response.data.data[0]);
-                        response.data.data.forEach((entry) => {
-                            this.categories.push(entry);
-                        });
-                        console.log(this.categories)
+                    }
+                    ).then((response) => {
+
+                        if (response.data.success == false) {
+                            this.loading = false;
+                            Snackbar.show({
+                                text: response.data.errors,
+                                actionTextColor: '#fff',
+                                backgroundColor: '#e7515a',
+                            });
+                        } else {
+                            console.log(response.data);
+                            this.loading = false;
+                            this.name = '';
+                            this.price = '';
+                            this.containerPrice = '';
+                            this.hasContainer = false;
+                            Snackbar.show({
+                                text: 'Item successfully created',
+                                actionTextColor: '#fff',
+                                backgroundColor: '#8dbf42',
+                                width: 'auto',
+                                onActionClick: function (element) {
+                                    //Set opacity of element to 0 to close Snackbar 
+                                    $(element).css('opacity', 0);
+                                    window.location.href = 'product_list.html';
+                                }
+                            });
+                        }
                     }).catch((error) => {
-                        console.log('This is an error!!!', error);
+                        if (error.response.code == 401) {
+                            localStorage.removeItem('token');
+                            window.location.href = 'login.html';
+                        }
+                        console.log(error.response.data);
+                        this.loading = false;
                         Snackbar.show({
                             text: 'An error occurred',
                             actionTextColor: '#fff',
                             backgroundColor: '#e7515a'
                         });
-                    })
+                    });
+
+                },
+            },
+            mounted: function () {
+
+                if (localStorage.getItem("token") === null) {
+                    localStorage.removeItem('token');
+                    window.location.href = 'login.html';
                 }
-            });
-        </script>
+                axios.get(generateURL(VENDOR_CATEGORY), {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                }).then((response) => {
+                    // console.log(response.data.data[0]);
+                    response.data.data.forEach((entry) => {
+                        this.categories.push(entry);
+                    });
+                    console.log(this.categories)
+                }).catch((error) => {
+                    if (error.response.code == 401) {
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    }
+                    console.log('This is an error!!!', error);
+                    Snackbar.show({
+                        text: 'An error occurred',
+                        actionTextColor: '#fff',
+                        backgroundColor: '#e7515a'
+                    });
+                })
+            }
+        });
+    </script>
 
-        <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-        <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-        <script src="bootstrap/js/popper.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="plugins/notification/snackbar/snackbar.min.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/notification/snackbar/snackbar.min.js"></script>
 
-        <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script src="assets/js/app.js"></script>
-        <script>
-            feather.replace();
-        </script>
-        <script>
-            $(document).ready(function () {
-                App.init();
-            });
-        </script>
-        <script src="assets/js/custom.js"></script>
-        <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        feather.replace();
+    </script>
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-        <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-        <script>
-            //First upload
-            var firstUpload = new FileUploadWithPreview('myFirstImage')
-        </script>
-    </body>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script>
+        //First upload
+        var firstUpload = new FileUploadWithPreview('myFirstImage')
+    </script>
+</body>
 
 </html>
