@@ -1,6 +1,18 @@
-Vue.component('side-bar', {
-    template : `<div class="sidebar-wrapper sidebar-theme">
-
+Vue.component("side-bar", {
+    data: function () {
+        return {
+            user: JSON.parse(localStorage.getItem("user")),
+        };
+    },
+    methods: {
+        logout: function () {
+            console.log('hello');
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        }
+    },
+    template: `<div class="sidebar-wrapper sidebar-theme">
+                
                 <nav id="sidebar">
                     <div class="shadow-bottom"></div>
                     <ul class="list-unstyled menu-categories" id="accordionExample">
@@ -18,7 +30,7 @@ Vue.component('side-bar', {
                                 </div>
                             </a>
                         </li>
-                        <li class="menu">
+                        <li v-if="!user.is_vendor" class="menu">
                             <a href="#banners" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="grid"></i>
@@ -72,7 +84,7 @@ Vue.component('side-bar', {
                                 </div>
                             </a>
                         </li>
-                        <li class="menu">
+                        <li v-if="!user.is_vendor" class="menu">
                             <a href="cities" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="map-pin"></i>
@@ -81,7 +93,7 @@ Vue.component('side-bar', {
                             </a>
                         </li>
                         <li class="menu">
-                            <a href="restaurant.html" aria-expanded="false" class="dropdown-toggle">
+                            <a href="" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="home"></i>
                                     <span>Restaurant</span>
@@ -89,7 +101,7 @@ Vue.component('side-bar', {
                             </a>
                         </li>
 
-                        <li class="menu">
+                        <li v-if="!user.is_vendor" class="menu">
                             <a href="offers.html" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="calendar"></i>
@@ -98,7 +110,7 @@ Vue.component('side-bar', {
                             </a>
                         </li>
 
-                        <li class="menu">
+                        <li v-if="!user.is_vendor" class="menu">
                             <a href="staffs.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="users"></i>
@@ -123,33 +135,13 @@ Vue.component('side-bar', {
                             </a>
                             <ul class="collapse submenu list-unstyled" id="manageOrders" data-parent="#accordionExample">
                                 <li>
-                                    <a href="form_bootstrap_basic.html"> New Orders </a>
+                                    <a href="order.html"> New Orders </a>
                                 </li>
-                                <li>
-                                    <a href="form_input_group_basic.html"> Confirmed Orders </a>
-                                </li>
-                                <li>
-                                    <a href="form_layouts.html"> Processed Orders </a>
-                                </li>
-                                <li>
-                                    <a href="form_validation.html"> In Transit Orders </a>
-                                </li>
-                                <li>
-                                    <a href="form_layouts.html"> Ready to Pickup </a>
-                                </li>
-                                <li>
-                                    <a href="form_layouts.html"> Delivered Orders </a>
-                                </li>
-                                <li>
-                                    <a href="form_layouts.html"> Cancelled Orders </a>
-                                </li>
-                                <li>
-                                    <a href="form_layouts.html"> Paid Orders </a>
-                                </li>
+                            
                             </ul>
                         </li>
 
-                        <li class="menu">
+                        <li v-if="!user.is_vendor" class="menu">
                             <a href="notification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -165,7 +157,7 @@ Vue.component('side-bar', {
                             </a>
                         </li>
 
-                        <li class="menu">
+                        <li v-if="!user.is_vendor" class="menu">
                             <a href="reporting.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -179,7 +171,7 @@ Vue.component('side-bar', {
                             </a>
                         </li>
 
-                        <li class="menu">
+                        <li v-if="!user.is_vendor" class="menu">
                             <a href="users.html" data-toggle="collapse" aria-expanded="false"
                                 class="dropdown-toggle">
                                 <div class="">
@@ -194,8 +186,8 @@ Vue.component('side-bar', {
                             </a>
                         </li>
 
-                        <li class="menu">
-                            <a href="logout.html" aria-expanded="false" class="dropdown-toggle">
+                        <li class="menu" v-on:click.prevent="logout()">
+                            <a href="" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="log-out"></i>
                                     <span>Logout</span>
@@ -207,5 +199,5 @@ Vue.component('side-bar', {
 
                 </nav>
 
-            </div>`
+            </div>`,
 });

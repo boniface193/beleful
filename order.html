@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title> Orders | Beleful Dashboard </title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/loader.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link href="assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <!--  END CUSTOM STYLE FILE  -->
+    <link href="plugins/notification/snackbar/snackbar.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+    <script src="plugins/sweetalerts/promise-polyfill.js"></script>
+    <link href="plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <div id="app">
+        <!-- BEGIN LOADER -->
+        <!--  END LOADER -->
+
+        <!--  BEGIN NAVBAR  -->
+        <header-nav-bar></header-nav-bar>
+        <!--  END NAVBAR  -->
+
+        <!--  BEGIN NAVBAR  -->
+        <subheader-nav-bar></subheader-nav-bar>
+        <!--  END NAVBAR  -->
+
+        <!--  BEGIN MAIN CONTAINER  -->
+        <div class="main-container" id="container app">
+
+            <div class="overlay"></div>
+            <div class="search-overlay"></div>
+
+            <!--  BEGIN SIDEBAR  -->
+            <side-bar></side-bar>
+            <!--  END SIDEBAR  -->
+
+            <!--  BEGIN CONTENT AREA  -->
+            <div id="content" class="main-content">
+                <div class="layout-px-spacing">
+                    <div class="row layout-top-spacing">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-header">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                            <h4>Delivery List</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="basic" class="col-lg-12 layout-spacing">
+                                    <div class="table-responsive layout-spacing">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Order Id</th>
+                                                    <th>Name</th>
+                                                    <th>Amount</th>
+                                                    <th>Paid</th>
+                                                    <th>Confirmed</th>
+                                                    <th>Processed</th>
+                                                    <th>In Transit</th>
+                                                    <th>Delivered</th>
+
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+                                                <tr v-for="(item, index) in items" :key="item.id"
+                                                    v-on:click="getOrderDetail(item.id)">
+                                                    <td width="5%"> {{index + 1}} </td>
+                                                    <td width="17%">{{item.order_id}}</td>
+                                                    <td width="17%">{{item.customer_name}}</td>
+
+                                                    <td width="5%">{{item.total_paid}}</td>
+                                                    <td width="5%">
+                                                        <img src="./assets/img/check-circle.svg" v-if="item.paid"
+                                                            height="20" style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false">
+                                                    </td>
+                                                    <td width="5%">
+                                                        <img src="./assets/img/check-circle.svg" v-if="item.confirmed"
+                                                            height="20" style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false">
+                                                    </td>
+                                                    <td width="5%">
+                                                        <img src="./assets/img/check-circle.svg" v-if="item.processed"
+                                                            height="20" style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false">
+                                                    </td>
+                                                    <td width="5%">
+                                                        <img src="./assets/img/check-circle.svg" v-if="item.in_transit"
+                                                            height="20" style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false">
+                                                    </td>
+                                                    <td width="5%">
+                                                        <img src="./assets/img/check-circle.svg" v-if="item.delivered"
+                                                            height="20" style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false">
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="footer-wrapper">
+                    <div class="footer-section f-section-1">
+                        <p class="">Copyright © {{year}} <a target="_blank" href="https://firstpavitech.com">First
+                                Pavilion Technologies</a>,
+                            All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+            <!--  END CONTENT AREA  -->
+
+        </div>
+    </div>
+    <!-- END MAIN CONTAINER -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/custom/js/constants.js"></script>
+    <script src="assets/custom/js/components/header.js"></script>
+    <script src="assets/custom/js/components/subHeader.js"></script>
+    <script src="assets/custom/js/components/sidebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="application/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: [],
+            },
+            methods: {
+                getOrderDetail: function (id) {
+                    window.location.href = 'order_detail.html?d=' + id;
+                }
+            },
+            computed: {
+                year: function () {
+                    var d = new Date();
+                    var year = d.getFullYear();
+                    return year;
+                }
+            },
+            mounted: function () {
+                if (localStorage.getItem("token") === null) {
+                    localStorage.removeItem('token');
+                    window.location.href = 'login.html';
+                }
+
+                axios.get(generateURL(DELIVERY_URL), {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                }).then((response) => {
+                    this.items = response.data.data;
+                    console.log(response.data);
+                }).catch((error) => {
+                    if (error.response.code == 401) {
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    }
+                    console.log(error.response.data);
+                    Snackbar.show({
+                        text: 'An error occurred',
+                        actionTextColor: '#fff',
+                        backgroundColor: '#e7515a'
+                    });
+                });
+            }
+        });
+    </script>
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+    <script src="plugins/notification/snackbar/snackbar.min.js"></script>
+    <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
+    <script src="plugins/sweetalerts/custom-sweetalert.js"></script>
+
+    <script>
+        feather.replace();
+    </script>
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+</body>
+
+</html>

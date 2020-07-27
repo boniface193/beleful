@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-        <title>Sales Admin | CORK - Multipurpose Bootstrap Dashboard Template </title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
-        <script src="assets/js/loader.js"></script>
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
-        <!-- END GLOBAL MANDATORY STYLES -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Sales Admin | Beleful Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/loader.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
 
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-        <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
-        <link href="assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
-        <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
 
-        <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
-    
+
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
 
-    </head>
+</head>
 
-    <body>
-        <div id="load_screen">
-            <div class="loader">
-                <div class="loader-content">
-                    <div class="spinner-grow align-self-center"></div>
-                </div>
+<body>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
             </div>
         </div>
-        <div id="app">
-            <!-- BEGIN LOADER -->
-            <!--  END LOADER -->
+    </div>
+    <div id="app">
+        <!-- BEGIN LOADER -->
+        <!--  END LOADER -->
 
-            <!--  BEGIN NAVBAR  -->
-            <header-nav-bar></header-nav-bar>
-            <!--  END NAVBAR  -->
+        <!--  BEGIN NAVBAR  -->
+        <header-nav-bar></header-nav-bar>
+        <!--  END NAVBAR  -->
 
-            <!--  BEGIN NAVBAR  -->
-            <subheader-nav-bar></subheader-nav-bar>
-            <!--  END NAVBAR  -->
+        <!--  BEGIN NAVBAR  -->
+        <subheader-nav-bar></subheader-nav-bar>
+        <!--  END NAVBAR  -->
 
-            <!--  BEGIN MAIN CONTAINER  -->
-            <div class="main-container" id="container app">
+        <!--  BEGIN MAIN CONTAINER  -->
+        <div class="main-container" id="container app">
 
-                <div class="overlay"></div>
-                <div class="search-overlay"></div>
+            <div class="overlay"></div>
+            <div class="search-overlay"></div>
 
-                <!--  BEGIN SIDEBAR  -->
-                <side-bar></side-bar>
-                <!--  END SIDEBAR  -->
+            <!--  BEGIN SIDEBAR  -->
+            <side-bar></side-bar>
+            <!--  END SIDEBAR  -->
 
             <!--  BEGIN CONTENT AREA  -->
             <div id="content" class="main-content">
@@ -73,7 +72,8 @@
                                 <div class="widget-heading">
                                     <h5 class="">{{message}}</h5>
                                     <ul class="tabs tab-pills">
-                                        <li><a href="javascript:void(0);" id="tb_1" @click="handlebtn" class="tabmenu">Monthly</a></li>
+                                        <li><a href="javascript:void(0);" id="tb_1" @click="handlebtn"
+                                                class="tabmenu">Monthly</a></li>
                                     </ul>
                                 </div>
 
@@ -106,172 +106,55 @@
 
                                 <div class="widget-content">
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table text-center">
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        <div class="th-content">Customer</div>
+                                                        <div class="th-content">S/N</div>
                                                     </th>
                                                     <th>
-                                                        <div class="th-content">Product</div>
+                                                        <div class="th-content">Name</div>
                                                     </th>
                                                     <th>
-                                                        <div class="th-content">Invoice</div>
+                                                        <div class="th-content">Amount</div>
                                                     </th>
                                                     <th>
-                                                        <div class="th-content th-heading">Price</div>
+                                                        <div class="th-content">Paid</div>
                                                     </th>
                                                     <th>
-                                                        <div class="th-content">Status</div>
+                                                        <div class="th-content">Confirmed</div>
                                                     </th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
-                                                <tr>
+                                                <tr v-for="(item, index) in latest_orders" :key="item.id"
+                                                    v-on:click="getOrderDetail(item.id)">
                                                     <td>
-                                                        <div class="td-content customer-name"><img
-                                                                src="assets/img/profile-7.jpeg" alt="avatar">Andy King
+                                                        <div class="td-content">{{index + 1}} </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="td-content">{{item.customer_name}} </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="td-content">{{item.total_paid}} </div>
+                                                    </td>
+                                                    <td width="15%">
+                                                        <div>
+                                                            <img src="./assets/img/check-circle.svg" v-if="item.paid"
+                                                                height="20" style="filter: invert(1)" alt="true">
+                                                            <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                                style="filter: invert(1)" alt="false">
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <div class="td-content product-brand">Nike Sport</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">#76894</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content pricing"><span class="">$88.00</span>
+                                                    <td width="15%">
+                                                        <div>
+                                                            <img src="./assets/img/check-circle.svg"
+                                                                v-if="item.confirmed" height="20"
+                                                                style="filter: invert(1)" alt="true">
+                                                            <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                                style="filter: invert(1)" alt="false">
                                                         </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="badge outline-badge-primary">Shipped</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content customer-name"><img
-                                                                src="assets/img/profile-4.jpeg" alt="avatar">Irene
-                                                            Collins</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content product-brand">Speakers</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">#75844</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content pricing"><span class="">$84.00</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="badge outline-badge-success">Paid</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content customer-name"><img
-                                                                src="assets/img/profile-10.jpeg" alt="avatar">Laurie Fox
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content product-brand">Camera</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">#66894</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content pricing"><span class="">$126.04</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="badge outline-badge-danger">Pending</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content customer-name"><img
-                                                                src="assets/img/profile-13.jpeg" alt="avatar">Luke Ivory
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content product-brand">Headphone</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">#46894</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content pricing"><span class="">$56.07</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="badge outline-badge-success">Paid</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content customer-name"><img
-                                                                src="assets/img/profile-5.jpeg" alt="avatar">Ryan
-                                                            Collins</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content product-brand">Sport</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">#89891</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content pricing"><span class="">$108.09</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="badge outline-badge-primary">Shipped</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content customer-name"><img
-                                                                src="assets/img/profile-6.jpeg" alt="avatar">Nia Hillyer
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content product-brand">Sunglasses</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">#26974</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content pricing"><span class="">$168.09</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="badge outline-badge-primary">Shipped</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content customer-name"><img
-                                                                src="assets/img/profile-11.jpeg" alt="avatar">Sonia Shaw
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content product-brand">Watch</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">#76844</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content pricing"><span class="">$110.00</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="badge outline-badge-success">Paid</span></div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -290,9 +173,12 @@
 
                                 <div class="widget-content">
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table text-center">
                                             <thead>
                                                 <tr>
+                                                    <th>
+                                                        <div class="th-content">S/N</div>
+                                                    </th>
                                                     <th>
                                                         <div class="th-content">Product</div>
                                                     </th>
@@ -300,165 +186,25 @@
                                                         <div class="th-content th-heading">Price</div>
                                                     </th>
                                                     <th>
-                                                        <div class="th-content th-heading">Discount</div>
-                                                    </th>
-                                                    <th>
                                                         <div class="th-content">Sold</div>
-                                                    </th>
-                                                    <th>
-                                                        <div class="th-content">Source</div>
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <tr v-for="(item, index) in top_selling_product" :key="item.id">
                                                     <td>
-                                                        <div class="td-content product-name"><img
-                                                                src="assets/img/speaker.jpg" alt="product">Speakers
+                                                        <div class="td-content">{{index + 1}}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="td-content product-name">{{item.name}}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="td-content"><span class="pricing">&#8358
+                                                                {{item.price}}</span>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="td-content"><span class="pricing">$84.00</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="discount-pricing">$10.00</span></div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">240</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><a href="javascript:void(0);"
-                                                                class="">Direct</a></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content product-name"><img
-                                                                src="assets/img/sunglass.jpg" alt="product">Sunglasses
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span class="pricing">$56.07</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="discount-pricing">$5.07</span></div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">190</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><a href="javascript:void(0);"
-                                                                class="">Google</a></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content product-name"><img
-                                                                src="assets/img/watch.jpg" alt="product">Watch</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span class="pricing">$88.00</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="discount-pricing">$20.00</span></div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">66</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><a href="javascript:void(0);"
-                                                                class="">Ads</a></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content product-name"><img
-                                                                src="assets/img/laptop.jpg" alt="product">Laptop</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span class="pricing">$110.00</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="discount-pricing">$33.00</span></div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">35</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><a href="javascript:void(0);"
-                                                                class="">Email</a></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content product-name"><img
-                                                                src="assets/img/camera.jpg" alt="product">Camera</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span class="pricing">$126.04</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="discount-pricing">$26.04</span></div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">30</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><a href="javascript:void(0);"
-                                                                class="">Referral</a></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content product-name"><img
-                                                                src="assets/img/shoes.jpg" alt="product">Shoes</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span class="pricing">$108.09</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="discount-pricing">$47.09</span></div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">130</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><a href="javascript:void(0);"
-                                                                class="">Google</a></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="td-content product-name"><img
-                                                                src="assets/img/headphones.jpg" alt="product">Headphone
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span class="pricing">$168.09</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><span
-                                                                class="discount-pricing">$60.09</span></div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content">170</div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="td-content"><a href="javascript:void(0);"
-                                                                class="">Ads</a></div>
+                                                        <div class="td-content">{{item.count}}</div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -473,17 +219,9 @@
                 </div>
                 <div class="footer-wrapper">
                     <div class="footer-section f-section-1">
-                        <p class="">Copyright © 2020 <a target="_blank" href="https://designreset.com">DesignReset</a>,
+                        <p class="">Copyright © {{year}} <a target="_blank" href="https://firstpavitech.com">First
+                                Pavilion Technologies</a>,
                             All rights reserved.</p>
-                    </div>
-                    <div class="footer-section f-section-2">
-                        <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
-                                </path>
-                            </svg></p>
                     </div>
                 </div>
             </div>
@@ -491,48 +229,149 @@
 
         </div>
     </div>
-        <!-- END MAIN CONTAINER -->
-        <script src="https://unpkg.com/feather-icons"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="assets/custom/js/components/header.js"></script>
-        <script src="assets/custom/js/components/subHeader.js"></script>
-        <script src="assets/custom/js/components/sidebar.js"></script>
-        <script type="application/javascript">
-            var app = new Vue({
-                el: '#app',
-                data: {
-                    message: 'Hello Vue!'
-                },
-                methods: {
-                    handlebtn() {
-                        console.log('confirmed!!!')
-                    }
+    <!-- END MAIN CONTAINER -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/custom/js/constants.js"></script>
+    <script src="assets/custom/js/components/header.js"></script>
+    <script src="assets/custom/js/components/subHeader.js"></script>
+    <script src="assets/custom/js/components/sidebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="plugins/apex/apexcharts.min.js"></script>
+    <script type="application/javascript">
+        var user = '';
+        var DashboardApp = new Vue({
+            el: '#app',
+            data: {
+                message: 'Welcome back!',
+                latest_orders: [],
+                top_selling_product: [],
+                category_names: [],
+                category_count: [],
+                category_colors: [],
+                total_sale: 0,
+                delivery_paid_count: Array(12).fill(0),
+                delivery_cancelled_count: Array(12).fill(0),
+            },
+            computed: {
+                year: function () {
+                    var d = new Date();
+                    var year = d.getFullYear();
+                    return year;
                 }
-            });
-        </script>
+            },
+            
+            methods: {
+                handlebtn() {
+                    console.log('confirmed!!!')
+                }
+            },
+            mounted: function () {
+                if (localStorage.getItem("token") === null) {
+                    localStorage.removeItem('token');
+                    window.location.href = 'login.html';
+                }
+                
+                axios.get(generateURL(DASHBOARD_URL), {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                }).then((response) => {
+                    response.data.data.category_graph_response.forEach(element => {
+                        this.category_names.push(element.name);
+                        this.category_count.push(element.count);
+                        this.category_colors.push(getRandomColor());
+                    });
 
-        <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-        <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-        <script src="bootstrap/js/popper.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-        <script src="assets/js/app.js"></script>
-        <script>
-            feather.replace();
-        </script>
-        <script>
-        $(document).ready(function() {
+                    options.series = this.category_count;
+                    options.labels = this.category_names;
+                    options.colors = this.category_colors;
+
+
+                    /*
+                        =================================
+                            Sales By Category | Render
+                        =================================
+                    */
+                    var chart = new ApexCharts(
+                        document.querySelector("#chart-2"),
+                        options
+                    );
+
+                    chart.render();
+
+
+                    response.data.data.delivery_paid_graph_response.forEach(element => {
+                        this.total_sale += element.total;
+                        this.delivery_paid_count[element.month] = element.total;
+                    });
+                    response.data.data.delivery_cancelled_graph_response.forEach(element => {
+                        this.delivery_cancelled_count[element.month] = element.total;
+                    });
+
+                    options1.title.text = 'N' + this.total_sale;
+                    options1.series[0].data = this.delivery_paid_count;
+                    options1.series[1].data = this.delivery_cancelled_count;
+
+                    /*
+                        =================================
+                            Monthly Sales | Render
+                        =================================
+                    */
+
+
+                    var chart1 = new ApexCharts(
+                        document.querySelector("#revenueMonthly"),
+                        options1
+                    );
+
+                    chart1.render();
+
+                    this.latest_orders = response.data.data.latest_orders;
+
+                    this.top_selling_product = response.data.data.top_selling_product;
+
+
+                }).catch((error) => {
+                    if (error.response.code == 401) {
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    }
+                    console.log(error);
+                    console.log('This is an error!!!', error);
+                    Snackbar.show({
+                        text: 'An error occurred',
+                        actionTextColor: '#fff',
+                        backgroundColor: '#e7515a'
+                    });
+                })
+
+            }
+        });
+    </script>
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        feather.replace();
+    </script>
+    <script>
+        $(document).ready(function () {
             App.init();
         });
     </script>
-        <script src="assets/js/custom.js"></script>
-        <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-        <script src="plugins/apex/apexcharts.min.js"></script>
-        <script src="assets/js/dashboard/dash_1.js"></script>
-        <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    <script src="plugins/notification/snackbar/snackbar.min.js"></script>
+    <script src="assets/js/dashboard/dash_1.js"></script>
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
-    </body>
+</body>
 
 </html>
