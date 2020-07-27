@@ -183,7 +183,7 @@
                 categoryId: '',
                 categoryName: '',
                 price: '',
-                containerPrice: '',
+                containerPrice: 0,
                 image: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Chicken-Pizza_exps30800_FM143298B03_11_8bC_RMS-696x696.jpg',
                 hasContainer: false,
                 loading: false,
@@ -200,7 +200,7 @@
 
                 addProduct: function () {
                     this.loading = true;
-                    if ((this.hasContainer == true && this.containerPrice == '') || (this.hasContainer == false && this.containerPrice != '')) {
+                    if ((this.hasContainer == true && (this.containerPrice < 0 || this.containerPrice == '')) || (this.hasContainer == false && this.containerPrice >= 1)) {
                         this.loading = false;
                         Snackbar.show({
                             text: 'If a container price is set then the has container must be checked',
@@ -209,8 +209,8 @@
                         });
                         return;
                     }
-                    axios.post(generateURL(PRODUCT_URL),
-                        {
+                    if(this.hasContainer){
+                        body = {
                             'name': this.name,
                             'price': this.price,
                             'image': this.image,
@@ -218,7 +218,19 @@
                             'container_price': this.containerPrice,
                             'has_container': this.hasContainer,
                             'availability': this.availability,
-                        }, {
+                        }
+                    }else{
+                        body = {
+                            'name': this.name,
+                            'price': this.price,
+                            'image': this.image,
+                            'category': this.categoryId,
+                            'has_container': this.hasContainer,
+                            'availability': this.availability,
+                        }
+                    }
+                    axios.post(generateURL(PRODUCT_URL),
+                        body, {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`
                         }
@@ -233,7 +245,6 @@
                                 backgroundColor: '#e7515a',
                             });
                         } else {
-                            console.log(response.data);
                             this.loading = false;
                             this.name = '';
                             this.price = '';
@@ -256,7 +267,6 @@
                             localStorage.removeItem('token');
                             window.location.href = 'login.html';
                         }
-                        console.log(error.response.data);
                         this.loading = false;
                         Snackbar.show({
                             text: 'An error occurred',
@@ -278,17 +288,14 @@
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 }).then((response) => {
-                    // console.log(response.data.data[0]);
                     response.data.data.forEach((entry) => {
                         this.categories.push(entry);
                     });
-                    console.log(this.categories)
                 }).catch((error) => {
                     if (error.response.code == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }
-                    console.log('This is an error!!!', error);
                     Snackbar.show({
                         text: 'An error occurred',
                         actionTextColor: '#fff',

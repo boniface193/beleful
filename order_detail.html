@@ -179,7 +179,6 @@
                 var url_string = window.location.href;
                 var url = new URL(url_string);
                 var id = url.searchParams.get("d");
-                console.log(id);
 
                 axios.get(generateURL(DELIVERY_DETAIL_URL + id), {
                     headers: {
@@ -196,7 +195,6 @@
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }
-                    console.log(error.response.data);
                     Snackbar.show({
                         text: 'An error occurred',
                         actionTextColor: '#fff',

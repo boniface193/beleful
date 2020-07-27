@@ -17,7 +17,6 @@ const DASHBOARD_URL = 'vendors/dashboard/';
 
 function generateURL(SUB_URL){
     URL = BASE_URL + SUB_URL;
-    console.log(URL);
     if(URL.endsWith('/')){
         return URL;
     }

@@ -162,7 +162,6 @@
                             password: this.password,
                         }).then((response) => {
                             responseData = response.data;
-                            console.log(responseData.data);
                             if (responseData.data.user.is_vendor || responseData.data.user.is_superuser) {
                                 localStorage.setItem('token', responseData.data.access);
                                 localStorage.setItem('user', JSON.stringify(responseData.data.user));
@@ -172,9 +171,6 @@
                                     localStorage.removeItem('vendor');
                                 }
                                 window.location.href = 'index.html';
-                                console.log('*****************');
-                                console.log(localStorage.getItem('token'));
-                                console.log(JSON.parse(localStorage.getItem('user')));
                             } else {
                                 this.errors.push('You do not have access to login');
                             }
@@ -182,7 +178,6 @@
                         }).catch((error) => {
 
                             errorData = error.response.data;
-                            console.log(errorData);
                             this.errors.push(errorData.errors);
                             this.loading = false;
                         });

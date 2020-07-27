@@ -6,7 +6,6 @@ Vue.component("side-bar", {
     },
     methods: {
         logout: function () {
-            console.log('hello');
             localStorage.removeItem('token');
             window.location.href = 'login.html';
         }

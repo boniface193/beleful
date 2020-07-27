@@ -199,13 +199,11 @@
                     }
                 }).then((response) => {
                     this.items = response.data.data;
-                    console.log(response.data);
                 }).catch((error) => {
                     if (error.response.code == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }
-                    console.log(error.response.data);
                     Snackbar.show({
                         text: 'An error occurred',
                         actionTextColor: '#fff',
