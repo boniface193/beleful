@@ -15,6 +15,8 @@ const DELIVERY_DETAIL_URL = 'order/';
 
 const DASHBOARD_URL = 'vendors/dashboard/';
 
+const CONFIRM_EMAIL_URL = 'user/accounts/activate/';
+
 function generateURL(SUB_URL){
     URL = BASE_URL + SUB_URL;
     if(URL.endsWith('/')){
