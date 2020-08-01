@@ -106,20 +106,28 @@
                                                                 id="inputPassword4" placeholder="Price" required>
                                                         </div>
                                                         <div class="form-group col-md-4">
-                                                            <label for="inputAddress">Image</label>
-                                                            <div class="custom-file-container"
+                                                            <div class="custom-file-container" data-upload-id="myFirstImage">
+                                                                <label>Image <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                                                <label class="custom-file-container__custom-file" >
+                                                                    <input id="inputFileToLoad" type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" v-on:change.prevent="encodeImageFileAsURL()">
+                                                                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                                                    <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                                                </label>
+                                                                <div class="custom-file-container__image-preview" hidden></div>
+                                                            </div>
+                                                            <!-- <div class="custom-file-container"
                                                                 data-upload-id="myFirstImage">
 
                                                                 <label class="custom-file-container__custom-file">
-                                                                    <input type="file"
-                                                                        class="custom-file-container__custom-file__custom-file-input"
-                                                                        accept="image/*">
+                                                                    <input type="file" id="inputFileToLoad"
+                                                                        class=""
+                                                                        accept="image/*" v-on:change.prevent="encodeImageFileAsURL()">
                                                                     <input type="hidden" name="MAX_FILE_SIZE"
                                                                         value="10485760" v-model="image" />
                                                                     <span
                                                                         class="custom-file-container__custom-file__custom-file-control"></span>
                                                                 </label>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                     <div class="form-group mb-4">
@@ -184,7 +192,7 @@
                 categoryName: '',
                 price: '',
                 containerPrice: 0,
-                image: 'https://www.tasteofhome.com/wp-content/uploads/2018/01/Chicken-Pizza_exps30800_FM143298B03_11_8bC_RMS-696x696.jpg',
+                image: '',
                 hasContainer: false,
                 loading: false,
             },
@@ -197,6 +205,16 @@
                 }
             },
             methods: {
+                encodeImageFileAsURL: function () {
+                    var element = document.getElementById("inputFileToLoad");
+                    var file = element.files[0];
+                    var reader = new FileReader();
+                    reader.onloadend = () => {
+                        var b64 = reader.result.replace(/^data:.+;base64,/, '');
+                        this.image = b64;
+                    }
+                    reader.readAsDataURL(file);
+                },
 
                 addProduct: function () {
                     this.loading = true;
@@ -209,7 +227,7 @@
                         });
                         return;
                     }
-                    if(this.hasContainer){
+                    if (this.hasContainer) {
                         body = {
                             'name': this.name,
                             'price': this.price,
@@ -219,7 +237,7 @@
                             'has_container': this.hasContainer,
                             'availability': this.availability,
                         }
-                    }else{
+                    } else {
                         body = {
                             'name': this.name,
                             'price': this.price,
@@ -246,9 +264,9 @@
                             });
                         } else {
                             this.loading = false;
-                            this.name = '';
-                            this.price = '';
-                            this.containerPrice = '';
+                            this.name = ' ';
+                            this.price = 0;
+                            this.containerPrice = 0;
                             this.hasContainer = false;
                             Snackbar.show({
                                 text: 'Item successfully created',
@@ -263,7 +281,7 @@
                             });
                         }
                     }).catch((error) => {
-                        if (error.response.code == 401) {
+                        if (error.response.status == 401) {
                             localStorage.removeItem('token');
                             window.location.href = 'login.html';
                         }
@@ -292,7 +310,7 @@
                         this.categories.push(entry);
                     });
                 }).catch((error) => {
-                    if (error.response.code == 401) {
+                    if (error.response.status == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }
