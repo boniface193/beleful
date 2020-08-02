@@ -1,0 +1,10 @@
+# for root
+/*                    /index.html             200
+# for the rest
+/login                /login.html             200
+/order                /order.html             200
+/order-detail         /order_detail.html      200
+/product-add          /product_add.html       200
+/product-list         /product_list.html      200
+/product-category     /productCategory.html   200
+/confirm-email        /confirmemail.html      200
