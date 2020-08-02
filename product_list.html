@@ -342,7 +342,7 @@
                             backgroundColor: '#8dbf42'
                         });
                     }).catch((error) => {
-                        if (error.response.code == 401) {
+                        if (error.response.status == 401) {
                             localStorage.removeItem('token');
                             window.location.href = 'login.html';
                         }
@@ -379,7 +379,7 @@
                                     'success'
                                 );
                             }).catch((error) => {
-                                if (error.response.code == 401) {
+                                if (error.response.status == 401) {
                                     localStorage.removeItem('token');
                                     window.location.href = 'login.html';
                                 }
@@ -408,7 +408,7 @@
                     this.pageLoading = false
                     this.items = response.data.data;
                 }).catch((error) => {
-                    if (error.response.code == 401) {
+                    if (error.response.status == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }
@@ -428,7 +428,7 @@
                         this.categories.push(entry);
                     });
                 }).catch((error) => {
-                    if (error.response.code == 401) {
+                    if (error.response.status == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }

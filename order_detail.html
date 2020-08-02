@@ -196,7 +196,7 @@
                         this.items.push(entry.item);
                     });
                 }).catch((error) => {
-                    if (error.response.code == 401) {
+                    if (error.response.status == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }

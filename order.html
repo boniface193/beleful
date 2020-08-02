@@ -206,7 +206,7 @@
                     this.pageLoading = false
                     this.items = response.data.data;
                 }).catch((error) => {
-                    if (error.response.code == 401) {
+                    if (error.response.status == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }
