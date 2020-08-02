@@ -8,7 +8,10 @@ Vue.component("side-bar", {
         logout: function () {
             localStorage.removeItem('token');
             window.location.href = 'login.html';
-        }
+        },
+        handleActive: function() {
+            
+        } 
     },
     template: `<div class="sidebar-wrapper sidebar-theme">
                 
@@ -16,8 +19,7 @@ Vue.component("side-bar", {
                     <div class="shadow-bottom"></div>
                     <ul class="list-unstyled menu-categories" id="accordionExample">
                         <li class="menu">
-                            <a href="index.html" data-active="true" aria-expanded="true"
-                                class="dropdown-toggle">
+                            <a href="index.html" @click="handleActive" data-active="false" class=" dropdown-toggle">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -30,7 +32,7 @@ Vue.component("side-bar", {
                             </a>
                         </li>
                         <li v-if="!user.is_vendor" class="menu">
-                            <a href="#banners" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="#banners" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="grid"></i>
                                     <span>Banners</span>
@@ -53,7 +55,7 @@ Vue.component("side-bar", {
                             </ul>
                         </li>
                         <li class="menu">
-                            <a href="#products" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="#products" data-toggle="collapse" data-active="false" aria-expanded="false" class="  dropdown-toggle">
                                 <div class="">
                                     <i data-feather="tag"></i>
                                     <span>Manage Products</span>
@@ -76,7 +78,7 @@ Vue.component("side-bar", {
                             </ul>
                         </li>
                         <li class="menu">
-                            <a href="productCategory.html" aria-expanded="false" class="dropdown-toggle">
+                            <a href="productCategory.html" aria-expanded="false" data-active="false" class="  dropdown-toggle">
                                 <div class="">
                                     <i data-feather="cpu"></i>
                                     <span>Product Category</span>
@@ -84,7 +86,7 @@ Vue.component("side-bar", {
                             </a>
                         </li>
                         <li v-if="!user.is_vendor" class="menu">
-                            <a href="cities" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="cities" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="map-pin"></i>
                                     <span>Manage Cities</span>
@@ -92,7 +94,7 @@ Vue.component("side-bar", {
                             </a>
                         </li>
                         <li class="menu">
-                            <a href="" aria-expanded="false" class="dropdown-toggle">
+                            <a href="restaurant.html" aria-expanded="false" class=" dropdown-toggle">
                                 <div class="">
                                     <i data-feather="home"></i>
                                     <span>Restaurant</span>
@@ -101,7 +103,7 @@ Vue.component("side-bar", {
                         </li>
 
                         <li v-if="!user.is_vendor" class="menu">
-                            <a href="offers.html" aria-expanded="false" class="dropdown-toggle">
+                            <a href="offers.html" aria-expanded="false" data-active="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="calendar"></i>
                                     <span>Discount Offers</span>
@@ -110,7 +112,7 @@ Vue.component("side-bar", {
                         </li>
 
                         <li v-if="!user.is_vendor" class="menu">
-                            <a href="staffs.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="staffs.html" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="users"></i>
                                     <span>Staff Members</span>
@@ -119,7 +121,7 @@ Vue.component("side-bar", {
                         </li>
 
                         <li class="menu">
-                            <a href="#manageOrders" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="#manageOrders" data-toggle="collapse" data-active="false" aria-expanded="false" class=" dropdown-toggle">
                                 <div class="">
                                 <i data-feather="shopping-cart"></i>
                                     <span>Manage Orders</span>
@@ -141,7 +143,7 @@ Vue.component("side-bar", {
                         </li>
 
                         <li v-if="!user.is_vendor" class="menu">
-                            <a href="notification" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="notification" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -157,7 +159,7 @@ Vue.component("side-bar", {
                         </li>
 
                         <li v-if="!user.is_vendor" class="menu">
-                            <a href="reporting.html" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="reporting.html" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -171,7 +173,7 @@ Vue.component("side-bar", {
                         </li>
 
                         <li v-if="!user.is_vendor" class="menu">
-                            <a href="users.html" data-toggle="collapse" aria-expanded="false"
+                            <a href="users.html" data-toggle="collapse" data-active="false" aria-expanded="false"
                                 class="dropdown-toggle">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -200,3 +202,6 @@ Vue.component("side-bar", {
 
             </div>`,
 });
+
+
+

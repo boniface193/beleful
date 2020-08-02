@@ -1,5 +1,5 @@
-// const BASE_URL = 'https://staging-api.beleful.com.ng/api/';
-const BASE_URL = ' http://127.0.0.1:8000/api/';
+const BASE_URL = 'https://staging-api.beleful.com.ng/api/';
+// const BASE_URL = ' http://127.0.0.1:8000/api/';
 
 const LOGIN_URL = 'user/auth/';
 
@@ -14,6 +14,8 @@ const DELIVERY_URL = 'order/web/';
 const DELIVERY_DETAIL_URL = 'order/';
 
 const DASHBOARD_URL = 'vendors/dashboard/';
+
+const VENDORS_URL = 'vendors/'
 
 const CONFIRM_EMAIL_URL = 'user/accounts/activate/';
 

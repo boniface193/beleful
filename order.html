@@ -93,6 +93,7 @@
                                                     <th>Processed</th>
                                                     <th>In Transit</th>
                                                     <th>Delivered</th>
+                                                    <th>Date/Time</th>
 
                                                 </tr>
 
@@ -136,7 +137,7 @@
                                                         <img v-else src="./assets/img/x-circle.svg" height="20"
                                                             style="filter: invert(1)" alt="false">
                                                     </td>
-
+                                                    <td>{{item.updated_date}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
