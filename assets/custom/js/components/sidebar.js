@@ -4,6 +4,9 @@ Vue.component("side-bar", {
             user: JSON.parse(localStorage.getItem("user")),
         };
     },
+    mounted: function(){
+        console.log(this.user);
+    },
     methods: {
         logout: function () {
             localStorage.removeItem('token');
