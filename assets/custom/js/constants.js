@@ -7,6 +7,8 @@ const VENDOR_CATEGORY = 'vendors/category/';
 
 const PRODUCT_URL = 'vendors/items/';
 
+const CONFIGURATION = 'order/config/'
+
 const UPDATE_CATEGORY = 'vendors/category/';
 
 const DELIVERY_URL = 'order/web/';

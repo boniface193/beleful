@@ -80,7 +80,7 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Product List</h4>
+                                            <h4>Configuration</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -90,37 +90,30 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Category</th>
-                                                    <th>Name</th>
-                                                    <th>Image</th>
-                                                    <th>Price(&#8358)</th>
-                                                    <th>Has Container</th>
-                                                    <th>Container's Price (&#8358)</th>
-                                                    <th>Availability</th>
+                                                    <th>Service (&#8358)</th>
+                                                    <th>Delivery (&#8358)</th>
+                                                    <th>Per Km</th>
+                                                    <th>Discount (&#8358)</th>
+                                                    <th>Discount %</th>
+                                                    <th>Active</th>
                                                     <th style="text-align: right"></th>
                                                 </tr>
 
                                             </thead>
 
                                             <tbody>
-                                                <tr v-for="(item, index) in items" :key="item.id">
-                                                    <td width="5%"> {{index + 1}} </td>
-                                                    <td width="17%">{{item.category_name}}</td>
-                                                    <td width="17%">{{item.name}}</td>
-                                                    <td width="5%"><img width="60" height="60" :src="item.image"
-                                                            :alt="item.name"></td>
-                                                    <td width="5%">{{item.price}}</td>
-                                                    <td width="5%"><img src="./assets/img/check-circle.svg"
-                                                            v-if="item.has_container" height="20"
-                                                            style="filter: invert(1)" alt="true">
-                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
-                                                            style="filter: invert(1)" alt="false"></td>
-                                                    <td width="5%">{{item.container_price}}</td>
+                                                <tr>
+                                                    <td width="17%">{{items.id}}</td>
+                                                    <td>{{items.service_fee}}</td>
+                                                    <td width="17%">{{items.delivery_fee}}</td>
+                                                    <td width="5%"><img src="./assets/img/check-circle.svg" v-if="items.per_kilometer" height="20"style="filter: invert(1)" alt="true"><img v-else src="./assets/img/x-circle.svg" height="20"style="filter: invert(1)" alt="false"></td>
+                                                    <!-- <td width="5%">{{items.per_kilometer}}</td> -->
+                                                    <td width="5%">{{items.discount}}</td>
+                                                    <td width="5%">{{items.discount_percent}}</td>
                                                     <td width="5%">
-                                                        <img src="./assets/img/check-circle.svg"
-                                                            v-if="item.availability" height="20"
-                                                            style="filter: invert(1)" alt="true">
-                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                        <img src="./assets/img/x-circle.svg" v-if="items.Activity"
+                                                            height="20" style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/check-circle.svg" height="20"
                                                             style="filter: invert(1)" alt="false">
                                                     </td>
                                                     <td width="17%" style="text-align: right">
@@ -132,7 +125,7 @@
                                                         <!-- Modal -->
                                                         <div id="updateProductModal"
                                                             class="modal animated fadeInDown mt-1" role="dialog">
-                                                            <div class="modal-dialog modal-sm ">
+                                                            <div class="modal-dialog modal-dialog-lg modal-sm ">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body text-left">
                                                                         <form>
@@ -239,13 +232,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <button href=""
+                                                        <!-- <button href=""
                                                             v-on:click.prevent="deleteProduct(index, item.id)"
                                                             class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-danger bs-tooltip"
                                                             title="Delete This Entry"><img
                                                                 src="./assets/img/trash-2.svg" height="20"
                                                                 style="filter: invert(1)" alt="delete"></button>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -288,18 +281,18 @@
             el: '#app',
             data: {
                 items: [],
-                categories: [],
-                selectedIndex: '',
-                selectedId: '',
-                updateName: '',
-                updateCategoryId: '',
-                updateCategoryName: '',
-                updatePrice: '',
-                updateContainerPrice: '',
-                updateImage: '',
-                updateHasContainer: '',
-                updateAvailability: '',
-                updateLoading: false,
+                // categories: [],
+                // selectedIndex: '',
+                // selectedId: '',
+                // updateName: '',
+                // updateCategoryId: '',
+                // updateCategoryName: '',
+                // updatePrice: '',
+                // updateContainerPrice: '',
+                // updatePer_KM: false,
+                // updateHasContainer: true,
+                // updateAvailability: '',
+                // updateLoading: false,
                 pageLoading: false
             },
             computed: {
@@ -313,14 +306,14 @@
                 selectProduct: function (index, item) {
                     this.selectedIndex = index;
                     this.selectedId = item.id;
-                    this.updateName = item.name;
-                    this.updateCategoryName = item.category_name;
-                    this.updateCategoryId = item.category;
-                    this.updatePrice = item.price;
-                    this.updateImage = item.image;
-                    this.updateContainerPrice = item.container_price;
-                    this.updateHasContainer = item.has_container;
-                    this.updateAvailability = item.availability;
+                    this.updateName = item.delivery_fee;
+                    // this.updateCategoryName = item.category_name;
+                    this.updateCategoryId = item.service_fee;
+                    this.updatePrice = item.discount;
+                    this.updatePer_KM = item.per_kilometer;
+                    this.updateContainerPrice = item.is_active;
+                    this.updateHasContainer = item.discount_percent;
+                    this.updateAvailability = item.created_date;
 
                 },
 
@@ -355,43 +348,43 @@
                     });
 
                 },
-                deleteProduct: function (index, itemId) {
-                    swal({
-                        title: 'Are you sure?',
-                        text: "You won't be able to revert this!",
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Delete',
-                        padding: '2em'
-                    }).then((result) => {
-                        if (result.value) {
-                            axios.delete(generateURL(PRODUCT_URL + itemId),
-                                {
-                                    headers: {
-                                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                                    }
-                                }
-                            ).then((response) => {
-                                this.items.splice(index, 1);
-                                swal(
-                                    'Deleted!',
-                                    'Product has been deleted.',
-                                    'success'
-                                );
-                            }).catch((error) => {
-                                if (error.response.status == 401) {
-                                    localStorage.removeItem('token');
-                                    window.location.href = 'login.html';
-                                }
-                                Snackbar.show({
-                                    text: 'An error occurred',
-                                    actionTextColor: '#fff',
-                                    backgroundColor: '#e7515a'
-                                });
-                            });
-                        }
-                    });
-                }
+                // deleteProduct: function (index, itemId) {
+                //     swal({
+                //         title: 'Are you sure?',
+                //         text: "You won't be able to revert this!",
+                //         type: 'warning',
+                //         showCancelButton: true,
+                //         confirmButtonText: 'Delete',
+                //         padding: '2em'
+                //     }).then((result) => {
+                //         if (result.value) {
+                //             axios.delete(generateURL(PRODUCT_URL + itemId),
+                //                 {
+                //                     headers: {
+                //                         'Authorization': `Bearer ${localStorage.getItem('token')}`
+                //                     }
+                //                 }
+                //             ).then((response) => {
+                //                 this.items.splice(index, 1);
+                //                 swal(
+                //                     'Deleted!',
+                //                     'Product has been deleted.',
+                //                     'success'
+                //                 );
+                //             }).catch((error) => {
+                //                 if (error.response.status == 401) {
+                //                     localStorage.removeItem('token');
+                //                     window.location.href = 'login.html';
+                //                 }
+                //                 Snackbar.show({
+                //                     text: 'An error occurred',
+                //                     actionTextColor: '#fff',
+                //                     backgroundColor: '#e7515a'
+                //                 });
+                //             });
+                //         }
+                //     });
+                // }
             },
             mounted: function () {
                 this.pageLoading = true
@@ -400,15 +393,17 @@
                     window.location.href = 'login.html';
                 }
 
-                axios.get(generateURL(PRODUCT_URL), {
-                    
+                axios.get(generateURL(CONFIGURATION), {
+
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 }).then((response) => {
                     this.pageLoading = false
-                    this.items = response.data.data;
+                    this.items = response.data.configuration;
+                    console.log(response.data.configuration)
                 }).catch((error) => {
+                    console.log(error.response.data)
                     if (error.response.status == 401) {
                         localStorage.removeItem('token');
                         window.location.href = 'login.html';
@@ -420,25 +415,25 @@
                     });
                 });
 
-                axios.get(generateURL(VENDOR_CATEGORY),  {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                }).then((response) => {
-                    response.data.data.forEach((entry) => {
-                        this.categories.push(entry);
-                    });
-                }).catch((error) => {
-                    if (error.response.status == 401) {
-                        localStorage.removeItem('token');
-                        window.location.href = 'login.html';
-                    }
-                    Snackbar.show({
-                        text: 'An error occurred',
-                        actionTextColor: '#fff',
-                        backgroundColor: '#e7515a'
-                    });
-                })
+                // axios.get(generateURL(VENDOR_CATEGORY),  {
+                //     headers: {
+                //         'Authorization': `Bearer ${localStorage.getItem('token')}`
+                //     }
+                // }).then((response) => {
+                //     response.data.data.forEach((entry) => {
+                //         this.categories.push(entry);
+                //     });
+                // }).catch((error) => {
+                //     if (error.response.status == 401) {
+                //         localStorage.removeItem('token');
+                //         window.location.href = 'login.html';
+                //     }
+                //     Snackbar.show({
+                //         text: 'An error occurred',
+                //         actionTextColor: '#fff',
+                //         backgroundColor: '#e7515a'
+                //     });
+                // })
             }
         });
     </script>
