@@ -275,7 +275,6 @@
                         }
                     }
                     ).then((response) => {
-                        // console.log(response.data.data);
                         this.$set(this.tableItems, this.selectedIndex, response.data.data);
                         this.updateLoading = false;
                         $('#updateCategoryModal').modal('hide');

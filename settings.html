@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Restaurant | Beleful Dashboard </title>
+    <title>Product List | Beleful Dashboard </title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/loader.js"></script>
@@ -18,16 +18,18 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
+    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_custom.css">
+    <!-- END PAGE LEVEL CUSTOM STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="plugins/animate/animate.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!--  BEGIN CUSTOM STYLE FILE  -->
-
-    <link href="plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
-    <!-- <link href="plugins/flatpickr/custom-flatpickr.css" rel="stylesheet" type="text/css"> -->
     <link href="assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
     <!--  END CUSTOM STYLE FILE  -->
     <link href="plugins/notification/snackbar/snackbar.min.css" rel="stylesheet" type="text/css" />
@@ -78,7 +80,7 @@
                                 <div class="widget-header">
                                     <div class="row">
                                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Restaurant Details</h4>
+                                            <h4>Product List</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -88,12 +90,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Address</th>
                                                     <th>Category</th>
+                                                    <th>Name</th>
                                                     <th>Image</th>
-                                                    <th>Opening Time</th>
-                                                    <th>Closing Time</th>
+                                                    <th>Price(&#8358)</th>
+                                                    <th>Has Container</th>
+                                                    <th>Container's Price (&#8358)</th>
+                                                    <th>Availability</th>
                                                     <th style="text-align: right"></th>
                                                 </tr>
 
@@ -102,13 +105,24 @@
                                             <tbody>
                                                 <tr v-for="(item, index) in items" :key="item.id">
                                                     <td width="5%"> {{index + 1}} </td>
-                                                    <td width="17%" class="text-capitalize">{{item.name}}</td>
-                                                    <td width="17%" class="text-capitalize">{{item.address}}</td>
-                                                    <td width="17%" class="text-capitalize">{{item.category}}</td>
+                                                    <td width="17%">{{item.category_name}}</td>
+                                                    <td width="17%">{{item.name}}</td>
                                                     <td width="5%"><img width="60" height="60" :src="item.image"
                                                             :alt="item.name"></td>
-                                                    <td width="5%">{{item.opening_time}}</td>
-                                                    <td width="5%">{{item.closing_time}}</td>
+                                                    <td width="5%">{{item.price}}</td>
+                                                    <td width="5%"><img src="./assets/img/check-circle.svg"
+                                                            v-if="item.has_container" height="20"
+                                                            style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false"></td>
+                                                    <td width="5%">{{item.container_price}}</td>
+                                                    <td width="5%">
+                                                        <img src="./assets/img/check-circle.svg"
+                                                            v-if="item.availability" height="20"
+                                                            style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false">
+                                                    </td>
                                                     <td width="17%" style="text-align: right">
                                                         <a v-on:click.prevent="selectProduct(index, item)" href=""
                                                             class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-success bs-tooltip"
@@ -118,62 +132,90 @@
                                                         <!-- Modal -->
                                                         <div id="updateProductModal"
                                                             class="modal animated fadeInDown mt-1" role="dialog">
-                                                            <div class="modal-dialog modal-sm">
+                                                            <div class="modal-dialog modal-sm ">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body text-left">
                                                                         <form>
                                                                             <div class="form-group">
-                                                                                <label
-                                                                                    for="inputPassword4">Address</label>
-                                                                                <textarea class="form-control"
-                                                                                    v-model="address"
+                                                                                <label for="inputState">Category</label>
+                                                                                <select id="inputState"
+                                                                                    class="form-control"
+                                                                                    v-model="updateCategoryId">
+                                                                                    <option v-for="obj in categories"
+                                                                                        :value="obj.id">{{obj.category}}
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="inputPassword4">Name</label>
+                                                                                <input type="text" class="form-control"
                                                                                     id="inputPassword4"
-                                                                                    placeholder="Address"
-                                                                                    required></textarea>
+                                                                                    placeholder="Product's name"
+                                                                                    v-model="updateName">
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label for="inputPassword4">Opening
-                                                                                    Time</label>
-                                                                                <input id="timeFlatpickrOpeningTime"
-                                                                                    v-model="openingTime"
-                                                                                    class="form-control flatpickr flatpickr-input active"
-                                                                                    type="text"
-                                                                                    placeholder="Select Time..">
-
+                                                                                <label
+                                                                                    for="inputPassword4">Price</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    id="inputPassword4"
+                                                                                    placeholder="Price"
+                                                                                    v-model="updatePrice">
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label for="inputPassword4">Closing
-                                                                                    Time</label>
-                                                                                <input id="timeFlatpickrClosingTime"
-                                                                                    v-model="closingTime"
-                                                                                    class="form-control flatpickr flatpickr-input active"
-                                                                                    type="text"
-                                                                                    placeholder="Select Time..">
-
-                                                                            </div>
-                                                                            <div class="form-group">
+                                                                                <label for="inputAddress">Image</label>
                                                                                 <div class="custom-file-container"
                                                                                     data-upload-id="myFirstImage">
-                                                                                    <label>Image <a
-                                                                                            v-on:click="clearImage()"
-                                                                                            href="javascript:void(0)"
-                                                                                            class="custom-file-container__image-clear"
-                                                                                            title="Clear Image">x</a></label>
+
                                                                                     <label
                                                                                         class="custom-file-container__custom-file">
-                                                                                        <input id="inputFileToLoad"
-                                                                                            type="file"
+                                                                                        <input type="file"
                                                                                             class="custom-file-container__custom-file__custom-file-input"
-                                                                                            accept="image/*"
-                                                                                            v-on:change.prevent="encodeImageFileAsURL()">
+                                                                                            accept="image/*">
                                                                                         <input type="hidden"
                                                                                             name="MAX_FILE_SIZE"
                                                                                             value="10485760" />
                                                                                         <span
                                                                                             class="custom-file-container__custom-file__custom-file-control"></span>
                                                                                     </label>
-                                                                                    <div class="custom-file-container__image-preview"
-                                                                                        hidden></div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="inputPassword4">Container's
+                                                                                    Price</label>
+                                                                                <input type="number"
+                                                                                    class="form-control"
+                                                                                    id="inputPassword4"
+                                                                                    v-model="updateContainerPrice"
+                                                                                    placeholder="Container's Price (Optional)">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="form-check pl-0">
+                                                                                    <div
+                                                                                        class="custom-control custom-checkbox checkbox-info">
+                                                                                        <input type="checkbox"
+                                                                                            class="custom-control-input"
+                                                                                            id="gridCheck1"
+                                                                                            v-model="updateAvailability">
+                                                                                        <label
+                                                                                            class="custom-control-label"
+                                                                                            for="gridCheck1">Is
+                                                                                            Availiable</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-check pl-0">
+                                                                                    <div
+                                                                                        class="custom-control custom-checkbox checkbox-info">
+                                                                                        <input type="checkbox"
+                                                                                            class="custom-control-input"
+                                                                                            id="gridCheck2"
+                                                                                            v-model="updateHasContainer">
+                                                                                        <label
+                                                                                            class="custom-control-label"
+                                                                                            for="gridCheck2">Has
+                                                                                            Container?</label>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </form>
@@ -197,39 +239,41 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                    </div>
-                                    <button v-if="!isVendor" href="" v-on:click.prevent="deleteProduct(index, item.id)"
-                                        class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-danger bs-tooltip"
-                                        title="Delete This Entry"><img src="./assets/img/trash-2.svg" height="20"
-                                            style="filter: invert(1)" alt="delete"></button>
-                                    </td>
-                                    </tr>
-                                    </tbody>
-                                    </table>
-                                    <div v-if="pageLoading" class="text-center">
-                                        <div class="spinner-border text-white mt-5 mb-5 align-self-center loader-lg">
+                                                        <button href=""
+                                                            v-on:click.prevent="deleteProduct(index, item.id)"
+                                                            class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-danger bs-tooltip"
+                                                            title="Delete This Entry"><img
+                                                                src="./assets/img/trash-2.svg" height="20"
+                                                                style="filter: invert(1)" alt="delete"></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div v-if="pageLoading" class="text-center">
+                                            <div
+                                                class="spinner-border text-white mt-5 mb-5 align-self-center loader-lg">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+                </div>
 
+
+                <div class="footer-wrapper">
+                    <div class="footer-section f-section-1">
+                        <p class="">Copyright © {{year}} <a target="_blank" href="https://firstpavitech.com">First
+                                Pavilion Technologies</a>,
+                            All rights reserved.</p>
+                    </div>
                 </div>
             </div>
+            <!--  END CONTENT AREA  -->
 
-
-            <div class="footer-wrapper">
-                <div class="footer-section f-section-1">
-                    <p class="">Copyright © {{year}} <a target="_blank" href="https://firstpavitech.com">First
-                            Pavilion Technologies</a>,
-                        All rights reserved.</p>
-                </div>
-            </div>
         </div>
-        <!--  END CONTENT AREA  -->
-
-    </div>
     </div>
     <!-- END MAIN CONTAINER -->
     <script src="https://unpkg.com/feather-icons"></script>
@@ -244,16 +288,19 @@
             el: '#app',
             data: {
                 items: [],
+                categories: [],
                 selectedIndex: '',
                 selectedId: '',
-                address: '',
-                openingTime: '',
-                closingTime: '',
+                updateName: '',
+                updateCategoryId: '',
+                updateCategoryName: '',
+                updatePrice: '',
+                updateContainerPrice: '',
                 updateImage: '',
-                image: null,
+                updateHasContainer: '',
+                updateAvailability: '',
                 updateLoading: false,
-                pageLoading: false,
-                isVendor: JSON.parse(localStorage.getItem("user")).is_vendor,
+                pageLoading: false
             },
             computed: {
                 year: function () {
@@ -262,98 +309,30 @@
                     return year;
                 }
             },
-            mounted: function () {
-                this.pageLoading = true
-                if (localStorage.getItem("token") === null) {
-                    localStorage.removeItem('token');
-                    window.location.href = 'login.html';
-                }
-                if (this.isVendor) {
-                    vendorObj = JSON.parse(localStorage.getItem("vendor"));
-                    URL = VENDORS_URL + vendorObj.id;
-                } else {
-                    URL = VENDORS_URL;
-                }
-                axios.get(generateURL(URL), {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                }).then((response) => {
-                    if (this.isVendor) {
-                        this.pageLoading = false
-                        this.items = [response.data.vendor];
-                    } else {
-                        this.pageLoading = false
-                        this.items = response.data.data;
-                    }
-                }).catch((error) => {
-                    if (error.response.code == 401) {
-                        localStorage.removeItem('token');
-                        window.location.href = 'login.html';
-                    }
-                    Snackbar.show({
-                        text: 'An error occurred',
-                        actionTextColor: '#fff',
-                        backgroundColor: '#e7515a'
-                    });
-                });
-            },
             methods: {
-                clearImage: function () {
-                    console.log(this.image);
-                    this.image = null;
-                    console.log(this.image);
-                },
-
-                encodeImageFileAsURL: function () {
-                    var element = document.getElementById("inputFileToLoad");
-                    var file = element.files[0];
-                    var reader = new FileReader();
-                    reader.onloadend = () => {
-                        var b64 = reader.result.replace(/^data:.+;base64,/, '');
-                        this.image = b64;
-                    }
-                    reader.readAsDataURL(file);
-                },
-
                 selectProduct: function (index, item) {
                     this.selectedIndex = index;
                     this.selectedId = item.id;
-                    this.openingTime = item.opening_time;
-                    this.closingTime = item.closing_time;
+                    this.updateName = item.name;
+                    this.updateCategoryName = item.category_name;
+                    this.updateCategoryId = item.category;
+                    this.updatePrice = item.price;
                     this.updateImage = item.image;
-                    this.address = item.address;
+                    this.updateContainerPrice = item.container_price;
+                    this.updateHasContainer = item.has_container;
+                    this.updateAvailability = item.availability;
 
-                    flatpickr(document.getElementById('timeFlatpickrOpeningTime'), {
-                        enableTime: true,
-                        noCalendar: true,
-                        dateFormat: "H:i",
-                        defaultDate: this.openingTime
-                    });
-
-                    flatpickr(document.getElementById('timeFlatpickrClosingTime'), {
-                        enableTime: true,
-                        noCalendar: true,
-                        dateFormat: "H:i",
-                        defaultDate: this.closingTime
-                    });
                 },
 
                 updateProduct: function () {
                     this.updateLoading = true;
-                    axios.put(generateURL(VENDORS_URL + this.selectedId),
-                        {
-                            'address': this.address,
-                            'opening_time': this.openingTime,
-                            'closing_time': this.closingTime,
-                            'image': this.image === null ? this.updateImage : this.image,
-                        }, {
+                    axios.put(generateURL(PRODUCT_URL + this.selectedId),
+                     {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('token')}`
                         }
                     }
                     ).then((response) => {
-                        console.log(response)
                         this.$set(this.items, this.selectedIndex, response.data.data);
                         this.updateLoading = false;
                         $('#updateProductModal').modal('hide');
@@ -363,7 +342,7 @@
                             backgroundColor: '#8dbf42'
                         });
                     }).catch((error) => {
-                        if (error.response.code == 401) {
+                        if (error.response.status == 401) {
                             localStorage.removeItem('token');
                             window.location.href = 'login.html';
                         }
@@ -386,7 +365,7 @@
                         padding: '2em'
                     }).then((result) => {
                         if (result.value) {
-                            axios.delete(generateURL(VENDORS_URL + itemId),
+                            axios.delete(generateURL(PRODUCT_URL + itemId),
                                 {
                                     headers: {
                                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -400,7 +379,7 @@
                                     'success'
                                 );
                             }).catch((error) => {
-                                if (error.response.code == 401) {
+                                if (error.response.status == 401) {
                                     localStorage.removeItem('token');
                                     window.location.href = 'login.html';
                                 }
@@ -413,8 +392,54 @@
                         }
                     });
                 }
-            }
+            },
+            mounted: function () {
+                this.pageLoading = true
+                if (localStorage.getItem("token") === null) {
+                    localStorage.removeItem('token');
+                    window.location.href = 'login.html';
+                }
 
+                axios.get(generateURL(PRODUCT_URL), {
+                    
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                }).then((response) => {
+                    this.pageLoading = false
+                    this.items = response.data.data;
+                }).catch((error) => {
+                    if (error.response.status == 401) {
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    }
+                    Snackbar.show({
+                        text: 'An error occurred',
+                        actionTextColor: '#fff',
+                        backgroundColor: '#e7515a'
+                    });
+                });
+
+                axios.get(generateURL(VENDOR_CATEGORY),  {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                }).then((response) => {
+                    response.data.data.forEach((entry) => {
+                        this.categories.push(entry);
+                    });
+                }).catch((error) => {
+                    if (error.response.status == 401) {
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    }
+                    Snackbar.show({
+                        text: 'An error occurred',
+                        actionTextColor: '#fff',
+                        backgroundColor: '#e7515a'
+                    });
+                })
+            }
         });
     </script>
 
@@ -429,7 +454,6 @@
     <script src="plugins/notification/snackbar/snackbar.min.js"></script>
     <script src="plugins/sweetalerts/sweetalert2.min.js"></script>
     <script src="plugins/sweetalerts/custom-sweetalert.js"></script>
-    <script src="plugins/flatpickr/flatpickr.js"></script>
 
     <script>
         feather.replace();
@@ -445,8 +469,6 @@
         var firstUpload = new FileUploadWithPreview('myFirstImage');
     </script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
 </body>
 

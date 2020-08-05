@@ -50,10 +50,10 @@ Vue.component("side-bar", {
                             </a>
                             <ul class="collapse submenu list-unstyled" id="banners" data-parent="#accordionExample">
                                 <li>
-                                    <a href="component_tabs.html"> Welcome Slider </a>
+                                    <a href="banner.html"> Welcome Slider </a>
                                 </li>
                                 <li>
-                                    <a href="component_accordion.html"> Banners </a>
+                                    <a href="banner_add.html">Add Banners </a>
                                 </li>
                             </ul>
                         </li>
@@ -96,13 +96,31 @@ Vue.component("side-bar", {
                                 </div>
                             </a>
                         </li>
-                        <li class="menu">
-                            <a href="restaurant.html" aria-expanded="false" class=" dropdown-toggle">
+
+                        <li v-if="!user.is_vendor" class="menu">
+                            <a href="#restaurant" data-toggle="collapse" data-active="false"  aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i data-feather="home"></i>
-                                    <span>Restaurant</span>
+                                    <span>Vendor</span>
+                                </div>
+                                 <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
                                 </div>
                             </a>
+                            <ul class="collapse submenu list-unstyled" id="restaurant" data-parent="#restaurant">
+                                <li>
+                                    <a href="restaurant.html"> Vendors </a>
+                                </li>
+
+                                <li>
+                                    <a href="vendor_add.html"> Add Vendor </a>
+                                </li>
+                            
+                            </ul
                         </li>
 
                         <li v-if="!user.is_vendor" class="menu">
@@ -188,6 +206,28 @@ Vue.component("side-bar", {
                                     <span>App Users</span>
                                 </div>
                             </a>
+                        </li>
+
+                        <li v-if="!user.is_vendor" class="menu">
+                            <a href="#config" data-toggle="collapse" data-active="false" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i data-feather="settings"></i>
+                                    <span>Configuration</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </div>
+                            </a>
+                            <ul class="collapse submenu list-unstyled" id="config" data-parent="#accordionExample">
+                                <li>
+                                    <a href="settings.html"> Show Settings </a>
+                                </li>
+                                <li>
+                                    <a href="settings_add.html">Configure </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="menu" v-on:click.prevent="logout()">
