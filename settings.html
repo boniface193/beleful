@@ -104,8 +104,8 @@
                                             <tbody>
                                                 <tr>
                                                     <td width="17%">{{items.id}}</td>
-                                                    <td>{{items.service_fee}}</td>
-                                                    <td width="17%">{{items.delivery_fee}}</td>
+                                                    <td width="5%">{{items.service_fee}}</td>
+                                                    <td width="5%">{{items.delivery_fee}}</td>
                                                     <td width="5%"><img src="./assets/img/check-circle.svg" v-if="items.per_kilometer" height="20"style="filter: invert(1)" alt="true"><img v-else src="./assets/img/x-circle.svg" height="20"style="filter: invert(1)" alt="false"></td>
                                                     <!-- <td width="5%">{{items.per_kilometer}}</td> -->
                                                     <td width="5%">{{items.discount}}</td>
@@ -123,7 +123,7 @@
                                                             title="Edit This Entry"><img src="./assets/img/edit-2.svg"
                                                                 height="20" style="filter: invert(1)" alt="edit"></a>
                                                         <!-- Modal -->
-                                                        <div id="updateProductModal"
+                                                        <!-- <div id="updateProductModal"
                                                             class="modal animated fadeInDown mt-1" role="dialog">
                                                             <div class="modal-dialog modal-dialog-lg modal-sm ">
                                                                 <div class="modal-content">
@@ -231,7 +231,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <!-- <button href=""
                                                             v-on:click.prevent="deleteProduct(index, item.id)"
                                                             class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-danger bs-tooltip"
