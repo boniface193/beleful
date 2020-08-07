@@ -38,6 +38,7 @@
     <link href="plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <link href="plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">
 
 </head>
 
@@ -104,141 +105,29 @@
                                             <tbody>
                                                 <tr>
                                                     <td width="17%">{{items.id}}</td>
-                                                    <td>{{items.service_fee}}</td>
-                                                    <td width="17%">{{items.delivery_fee}}</td>
-                                                    <td width="5%"><img src="./assets/img/check-circle.svg" v-if="items.per_kilometer" height="20"style="filter: invert(1)" alt="true"><img v-else src="./assets/img/x-circle.svg" height="20"style="filter: invert(1)" alt="false"></td>
-                                                    <!-- <td width="5%">{{items.per_kilometer}}</td> -->
+                                                    <td width="5%">{{items.service_fee}}</td>
+                                                    <td width="5%">{{items.delivery_fee}}</td>
+                                                    <td width="5%"><img src="./assets/img/check-circle.svg"
+                                                            v-if="items.per_kilometer" height="20"
+                                                            style="filter: invert(1)" alt="true"><img v-else
+                                                            src="./assets/img/x-circle.svg" height="20"
+                                                            style="filter: invert(1)" alt="false"></td>
                                                     <td width="5%">{{items.discount}}</td>
                                                     <td width="5%">{{items.discount_percent}}</td>
                                                     <td width="5%">
-                                                        <img src="./assets/img/x-circle.svg" v-if="items.Activity"
-                                                            height="20" style="filter: invert(1)" alt="true">
-                                                        <img v-else src="./assets/img/check-circle.svg" height="20"
-                                                            style="filter: invert(1)" alt="false">
+                                                        <img src="./assets/img/check-circle.svg" v-if="items.is_active"height="20" style="filter: invert(1)" alt="true">
+                                                        <img v-else src="./assets/img/x-circle.svg" height="20" style="filter: invert(1)" alt="false">
+                                                        
                                                     </td>
                                                     <td width="17%" style="text-align: right">
-                                                        <a v-on:click.prevent="selectProduct(index, item)" href=""
+                                                        <a v-on:click.prevent="selectConfig()" href=""
                                                             class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-success bs-tooltip"
-                                                            data-toggle="modal" data-target="#updateProductModal"
+                                                            data-toggle="modal" data-target="#updateModal"
                                                             title="Edit This Entry"><img src="./assets/img/edit-2.svg"
                                                                 height="20" style="filter: invert(1)" alt="edit"></a>
                                                         <!-- Modal -->
-                                                        <div id="updateProductModal"
-                                                            class="modal animated fadeInDown mt-1" role="dialog">
-                                                            <div class="modal-dialog modal-dialog-lg modal-sm ">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-body text-left">
-                                                                        <form>
-                                                                            <div class="form-group">
-                                                                                <label for="inputState">Category</label>
-                                                                                <select id="inputState"
-                                                                                    class="form-control"
-                                                                                    v-model="updateCategoryId">
-                                                                                    <option v-for="obj in categories"
-                                                                                        :value="obj.id">{{obj.category}}
-                                                                                    </option>
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="inputPassword4">Name</label>
-                                                                                <input type="text" class="form-control"
-                                                                                    id="inputPassword4"
-                                                                                    placeholder="Product's name"
-                                                                                    v-model="updateName">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label
-                                                                                    for="inputPassword4">Price</label>
-                                                                                <input type="number"
-                                                                                    class="form-control"
-                                                                                    id="inputPassword4"
-                                                                                    placeholder="Price"
-                                                                                    v-model="updatePrice">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="inputAddress">Image</label>
-                                                                                <div class="custom-file-container"
-                                                                                    data-upload-id="myFirstImage">
 
-                                                                                    <label
-                                                                                        class="custom-file-container__custom-file">
-                                                                                        <input type="file"
-                                                                                            class="custom-file-container__custom-file__custom-file-input"
-                                                                                            accept="image/*">
-                                                                                        <input type="hidden"
-                                                                                            name="MAX_FILE_SIZE"
-                                                                                            value="10485760" />
-                                                                                        <span
-                                                                                            class="custom-file-container__custom-file__custom-file-control"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group">
-                                                                                <label for="inputPassword4">Container's
-                                                                                    Price</label>
-                                                                                <input type="number"
-                                                                                    class="form-control"
-                                                                                    id="inputPassword4"
-                                                                                    v-model="updateContainerPrice"
-                                                                                    placeholder="Container's Price (Optional)">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <div class="form-check pl-0">
-                                                                                    <div
-                                                                                        class="custom-control custom-checkbox checkbox-info">
-                                                                                        <input type="checkbox"
-                                                                                            class="custom-control-input"
-                                                                                            id="gridCheck1"
-                                                                                            v-model="updateAvailability">
-                                                                                        <label
-                                                                                            class="custom-control-label"
-                                                                                            for="gridCheck1">Is
-                                                                                            Availiable</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-check pl-0">
-                                                                                    <div
-                                                                                        class="custom-control custom-checkbox checkbox-info">
-                                                                                        <input type="checkbox"
-                                                                                            class="custom-control-input"
-                                                                                            id="gridCheck2"
-                                                                                            v-model="updateHasContainer">
-                                                                                        <label
-                                                                                            class="custom-control-label"
-                                                                                            for="gridCheck2">Has
-                                                                                            Container?</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button data-dismiss="modal"
-                                                                            class="btn btn-rounded">Discard</button>
-                                                                        <button href=""
-                                                                            class="btn btn-rounded btn-warning"
-                                                                            v-on:click.prevent="updateProduct">
-                                                                            <div v-if="updateLoading">
-                                                                                <div
-                                                                                    class="spinner-border text-white align-self-center loader-sm ">
-                                                                                    .</div>
-                                                                            </div>
-                                                                            <div v-else>Save</div>
-                                                                        </button>
-
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- <button href=""
-                                                            v-on:click.prevent="deleteProduct(index, item.id)"
-                                                            class="btn m-b-15 ml-2 mr-2 btn-md  btn-rounded-circle btn-danger bs-tooltip"
-                                                            title="Delete This Entry"><img
-                                                                src="./assets/img/trash-2.svg" height="20"
-                                                                style="filter: invert(1)" alt="delete"></button>
-                                                    </td> -->
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -252,6 +141,76 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+
+                <div id="updateModal" class="modal animated fadeInDown mt-1" role="dialog">
+
+                    <div class="modal-dialog modal-sm ">
+                        <div class="modal-content">
+                            <div class="modal-body text-left">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="inputPassword4">ID</label>
+                                        <input type="text" class="form-control" placeholder="ID" v-model="selectedId"
+                                            disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword4">Service Fee
+                                            </label>
+                                        <input type="number" class="form-control" id="" placeholder="Service Fee" v-model="updateCategoryId">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword4">Delivery
+                                            Fee</label>
+                                        <input type="number" class="form-control" id="" placeholder="Delivery Fee"
+                                            v-model="updateName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword4">Discount</label>
+                                        <input type="number" class="form-control" placeholder="Discount"
+                                            v-model="updatePrice">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword4">Discount Percent</label>
+                                        <input type="number" class="form-control" placeholder="Discount Percent" v-model="updateHasContainer">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-check pl-0">
+                                            <div class="custom-control custom-checkbox checkbox-info">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    v-model="updateContainerPrice" id="gridCheck2">
+                                                <label class="custom-control-label" for="gridCheck2">Is
+                                                    Active</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-check pl-0">
+                                            <div class="custom-control custom-checkbox checkbox-info">
+                                                <input type="checkbox" class="custom-control-input" v-model="updatePer_KM" id="gridCheck1">
+                                                <label class="custom-control-label" for="gridCheck1">Per Kilometer</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-rounded">Discard</button>
+                                <button href="" class="btn btn-rounded btn-warning" v-on:click.prevent="updateProduct">
+                                    <div v-if="updateLoading">
+                                        <div class="spinner-border text-white align-self-center loader-sm ">
+                                            .</div>
+                                    </div>
+                                    <div v-else>Save</div>
+                                </button>
+
+
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
@@ -281,18 +240,16 @@
             el: '#app',
             data: {
                 items: [],
-                // categories: [],
-                // selectedIndex: '',
-                // selectedId: '',
-                // updateName: '',
-                // updateCategoryId: '',
-                // updateCategoryName: '',
-                // updatePrice: '',
-                // updateContainerPrice: '',
-                // updatePer_KM: false,
-                // updateHasContainer: true,
-                // updateAvailability: '',
-                // updateLoading: false,
+                selectedIndex: '',
+                selectedId: '',
+                updateName: '',
+                updateCategoryId: '',
+                updatePrice: '',
+                updateContainerPrice: '',
+                updatePer_KM: '',
+                updateHasContainer: '',
+                updateAvailability: false,
+                updateLoading: false,
                 pageLoading: false
             },
             computed: {
@@ -303,38 +260,49 @@
                 }
             },
             methods: {
-                selectProduct: function (index, item) {
-                    this.selectedIndex = index;
-                    this.selectedId = item.id;
-                    this.updateName = item.delivery_fee;
-                    // this.updateCategoryName = item.category_name;
-                    this.updateCategoryId = item.service_fee;
-                    this.updatePrice = item.discount;
-                    this.updatePer_KM = item.per_kilometer;
-                    this.updateContainerPrice = item.is_active;
-                    this.updateHasContainer = item.discount_percent;
-                    this.updateAvailability = item.created_date;
+                selectConfig: function () {
+                    this.selectedId = this.items.id;
+                    this.updateName = this.items.delivery_fee;
+                    this.updateCategoryId = this.items.service_fee;
+                    this.updatePrice = this.items.discount;
+                    this.updatePer_KM = this.items.per_kilometer;
+                    this.updateContainerPrice = this.items.is_active;
+                    this.updateHasContainer = this.items.discount_percent;
+                    this.updateAvailability = this.items.created_date;
 
                 },
 
                 updateProduct: function () {
                     this.updateLoading = true;
-                    axios.put(generateURL(PRODUCT_URL + this.selectedId),
-                     {
-                        headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    console.log(localStorage.getItem('token'));
+                    
+                    axios.put(generateURL(CONFIGURATION + this.selectedId),
+                    {
+                        
+                            'service_fee': this.updateCategoryId,
+                            'delivery_fee': this.updateName,
+                            'discount': this.updatePrice,
+                            'discount_percent': this.updateHasContainer,
+                            'per_kilometer': this.updatePer_KM,
+                            'is_active': this.updateContainerPrice,
+                        },
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            }
                         }
-                    }
                     ).then((response) => {
-                        this.$set(this.items, this.selectedIndex, response.data.data);
+                        console.log(response)
+                        this.items = response.data.data;
                         this.updateLoading = false;
-                        $('#updateProductModal').modal('hide');
+                        $('#updateModal').modal('hide');
                         Snackbar.show({
                             text: 'Item successfully updated',
                             actionTextColor: '#fff',
                             backgroundColor: '#8dbf42'
                         });
                     }).catch((error) => {
+                        console.error(response.error)
                         if (error.response.status == 401) {
                             localStorage.removeItem('token');
                             window.location.href = 'login.html';
@@ -348,43 +316,6 @@
                     });
 
                 },
-                // deleteProduct: function (index, itemId) {
-                //     swal({
-                //         title: 'Are you sure?',
-                //         text: "You won't be able to revert this!",
-                //         type: 'warning',
-                //         showCancelButton: true,
-                //         confirmButtonText: 'Delete',
-                //         padding: '2em'
-                //     }).then((result) => {
-                //         if (result.value) {
-                //             axios.delete(generateURL(PRODUCT_URL + itemId),
-                //                 {
-                //                     headers: {
-                //                         'Authorization': `Bearer ${localStorage.getItem('token')}`
-                //                     }
-                //                 }
-                //             ).then((response) => {
-                //                 this.items.splice(index, 1);
-                //                 swal(
-                //                     'Deleted!',
-                //                     'Product has been deleted.',
-                //                     'success'
-                //                 );
-                //             }).catch((error) => {
-                //                 if (error.response.status == 401) {
-                //                     localStorage.removeItem('token');
-                //                     window.location.href = 'login.html';
-                //                 }
-                //                 Snackbar.show({
-                //                     text: 'An error occurred',
-                //                     actionTextColor: '#fff',
-                //                     backgroundColor: '#e7515a'
-                //                 });
-                //             });
-                //         }
-                //     });
-                // }
             },
             mounted: function () {
                 this.pageLoading = true
@@ -414,26 +345,6 @@
                         backgroundColor: '#e7515a'
                     });
                 });
-
-                // axios.get(generateURL(VENDOR_CATEGORY),  {
-                //     headers: {
-                //         'Authorization': `Bearer ${localStorage.getItem('token')}`
-                //     }
-                // }).then((response) => {
-                //     response.data.data.forEach((entry) => {
-                //         this.categories.push(entry);
-                //     });
-                // }).catch((error) => {
-                //     if (error.response.status == 401) {
-                //         localStorage.removeItem('token');
-                //         window.location.href = 'login.html';
-                //     }
-                //     Snackbar.show({
-                //         text: 'An error occurred',
-                //         actionTextColor: '#fff',
-                //         backgroundColor: '#e7515a'
-                //     });
-                // })
             }
         });
     </script>
@@ -459,10 +370,6 @@
         });
     </script>
     <script src="assets/js/custom.js"></script>
-    <script>
-        //First upload
-        var firstUpload = new FileUploadWithPreview('myFirstImage');
-    </script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
 </body>
