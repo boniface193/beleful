@@ -225,7 +225,7 @@ Vue.component("side-bar", {
                                     <a href="settings.html"> Show Settings </a>
                                 </li>
                                 <li>
-                                    <a href="settings_add.html">Configure </a>
+                                    <a href="settings_add.html">Add Configure</a>
                                 </li>
                             </ul>
                         </li>
