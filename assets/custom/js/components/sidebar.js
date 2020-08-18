@@ -225,9 +225,18 @@ Vue.component("side-bar", {
                                     <a href="settings.html"> Show Settings </a>
                                 </li>
                                 <li>
-                                    <a href="settings_add.html">Add Configuration</a>
+                                    <a href="settings_add.html">Add Configure</a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li v-if="!user.is_vendor" class="menu">
+                            <a href="reviews.html" data-active="false" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <i data-feather="users"></i>
+                                    <span>Reviews</span>
+                                </div>
+                            </a>
                         </li>
 
                         <li class="menu" v-on:click.prevent="logout()">

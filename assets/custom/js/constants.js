@@ -35,6 +35,8 @@ const VERIFY_OTP = 'user/password/confirmcode/';
 
 const CHANGE_PASSWORD = 'user/'
 
+const reviews = 'reviews'
+
 const generateURL = (SUB_URL) => {
     URL = BASE_URL + SUB_URL;
     if (URL.endsWith('/')) return URL;
